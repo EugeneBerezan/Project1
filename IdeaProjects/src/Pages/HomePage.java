@@ -33,8 +33,6 @@ public class HomePage {
     public HomePage clickOnTicketsUAHomeButton(){
         
 
-
-
         return new HomePage();
     }
 
