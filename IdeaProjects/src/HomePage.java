@@ -1,8 +1,6 @@
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class HomePage extends AbstractPage {
-
 
     //header Panel
     private By TICKETS_UA_HOME_LINK_LOCATOR = By.xpath("//a[contains(.,'Tickets')]");
@@ -36,10 +34,19 @@ public class HomePage extends AbstractPage {
 
     }
 
-    public void clickOnTickets() throws InterruptedException {
-        driver.get("http://tickets.ua");
+
+    public HomePage clickOnTickets() throws InterruptedException {
+
         driver.findElement(TICKETS_UA_HOME_LINK_LOCATOR).click();
 
+        return this;
+    }
+
+    public HomePage clickOnAviaTickets() throws Exception {
+
+        driver.findElement(AVIA_TICKETS_LINK_LOCATOR).click();
+
+        return this;
     }
 
 }
