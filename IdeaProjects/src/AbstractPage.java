@@ -1,5 +1,8 @@
-/**
- * Created by EugeneBerezan on 11/4/15.
- */
-public class AbstractPage {
+import org.openqa.selenium.WebDriver;
+
+public abstract class AbstractPage {
+
+    public WebDriver driver = WebDriverManager.getInstance();
+
+
 }

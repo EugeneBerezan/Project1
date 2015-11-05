@@ -1,21 +1,27 @@
+import org.junit.BeforeClass;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 
 public class Tests {
 
-    public String url = "http://tickets.ua";
+    public static WebDriver driver;
 
-
-    @AfterTest
-    public static void tearDawn(){
-
-        WebDriverManager.getInstance().close();
+    @BeforeClass
+    public static void setUP() {
 
     }
 
+    @AfterTest
+    public static void tearDawn() {
+        driver.close();
+        driver.quit();
+    }
+
     @Test
-    public void firstTest() {
-        WebDriverManager.getUrl();
+    public void firstTest() throws InterruptedException {
+
+        new HomePage().clickOnTickets();
 
 
     }
