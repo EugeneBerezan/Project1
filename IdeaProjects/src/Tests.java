@@ -11,9 +11,7 @@ public class Tests {
     @Test
     public void firstTest() throws Exception {
 
-        new HomePage()
-                .clickOnTickets()
-                .clickOnAviaTickets();
+        new HomePage().clickOnAviaTickets().selectDateOfDeparture("12.02.2016");
 
     }
 

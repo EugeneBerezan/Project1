@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 
 public class HomePage extends AbstractPage {
 
+    public HomePage homePage;
+
     //header Panel
     private By TICKETS_UA_HOME_LINK_LOCATOR = By.xpath("//a[contains(.,'Tickets')]");
     private By AVIA_TICKETS_LINK_LOCATOR = By.xpath("//li[@class='avia active']/a");
@@ -23,7 +25,7 @@ public class HomePage extends AbstractPage {
     private By CLASS_SELECTION_DROP_DAWN_LOCATOR = By.id("Class_Select");
     private By DEPARTURE_FROM_DATE_SELECT_LOCATOR = By.id("departure_date");
     private By DEPARTURE_DATE_FROM_EXACT_TIME_SELEC_LOCATOR = By.id("(//div[contains(.,'time_field')]//a[contains(@id,'Selector')])[1]");
-    private By DEPARTURE_TO_DATE_SELECT_LOCATOR = By.id("departure_date1");
+    private By ARRIVAL_TO_DATE_SELECT_LOCATOR = By.id("departure_date1");
     private By DEPARTURE_DATE_TO_EXACT_TIME_SELEC_LOCATOR = By.xpath("//div[contains(.,'time_field')]//a[contains(@id,'Selector')])[2]");
     private By PERSON_QUANTITY_SELEC_LOCATOR = By.xpath("//input[@class='preson_quant']");
     private By SEARCH_BUTON_LOCATOR = By.xpath("//a[@class='search_button']");
@@ -48,5 +50,45 @@ public class HomePage extends AbstractPage {
 
         return this;
     }
+
+    public HomePage inputFromLocation(String travelingFrom) {
+
+        driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
+
+        return this;
+    }
+
+    public HomePage inputToLocation(String travelingTo) {
+
+        driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
+
+        return this;
+    }
+
+
+    /**
+     * @param dateOfDeparture = format "30.12.2012"
+     */
+    public HomePage selectDateOfDeparture(String dateOfDeparture) throws InterruptedException {
+
+        driver.findElement(DEPARTURE_FROM_DATE_SELECT_LOCATOR).click();
+
+        selectDate(dateOfDeparture);
+
+        return this;
+    }
+
+
+    /**
+     * @param dateOfArrival = format "30.12.2012"
+     */
+    public HomePage selectDateOfArrival(String dateOfArrival) {
+
+        driver.findElement(ARRIVAL_TO_DATE_SELECT_LOCATOR).click();
+
+
+        return this;
+    }
+
 
 }
