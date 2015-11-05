@@ -19,6 +19,8 @@ public class WebDriverManager {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
+        driver.get("http://tickets.ua");
+
         return driver;
 
     }
