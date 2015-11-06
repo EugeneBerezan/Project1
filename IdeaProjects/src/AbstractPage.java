@@ -2,6 +2,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,10 +16,10 @@ public abstract class AbstractPage {
         Thread.sleep(miliseconds);
     }
 
-    protected final Logger log = LogManager.getLogger(getClass());
+    Logger log = LogManager.getLogger(getClass());
 
 
-    public static String getMonth(String monthName) {
+    public static String getMonthNumber(String monthName) {
 
         Map<String, String> month = new HashMap<>();
 
@@ -34,36 +36,49 @@ public abstract class AbstractPage {
         month.put("Ноябрь", "11");
         month.put("Декабрь", "12");
 
-        return getMonth(monthName.toLowerCase());
+        return month.get(monthName);
     }
 
     public void selectDate(String date) throws InterruptedException {
+
+        log.error("test");
 
         By NEXT_MONTH_LOCATOR = By.xpath("//span[text()='Next']");
         By CURRENT_MONTH_LOCATOR = By.xpath("//div[@id='ui-datepicker-div']/div[1]//div[@class='ui-datepicker-title']/span[1]");
 
         String currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
 
-        String[] elements = date.split("\\.");
+        String[] splitedDate = date.split("\\.");
 
-        if (elements[1].equals(getMonth(currentMonth))) {
+        if (splitedDate[1].equals(getMonthNumber(currentMonth))) {
 
-            driver.findElement(By.xpath("//div[@id='ui-datepicker-div']/div[1]//tbody//td/a[text()='" + elements[0] + "']")).click();
+            driver.findElement(By.xpath("//div[@id='ui-datepicker-div']/div[1]//tbody//td/a[text()='" + splitedDate[0] + "']")).click();
 
-        } else if (!(elements[1].equals(getMonth(currentMonth)))) {
+        } else {
 
-            for (int i = 0; i < 12 && !(elements[1].equals(currentMonth)); i++) {
+            for (int i = 0; i < 24; i++) {
 
-                driver.findElement(NEXT_MONTH_LOCATOR).click();
-                sleep(500);
+                currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
+
+                if (!splitedDate[1].equals(getMonthNumber(currentMonth))) {
+
+                    driver.findElement(NEXT_MONTH_LOCATOR).click();
+                    sleep(500);
+                }
             }
 
-            driver.findElement(By.xpath("//div[@id='ui-datepicker-div']/div[1]//tbody//td/a[text()='" + elements[0] + "']"));
-
+            driver.findElement(By.xpath("//div[@id='ui-datepicker-div']/div[1]//tbody//td/a[text()='" + splitedDate[0] + "']")).click();
 
         }
 
     }
 
+
+    public static void waitForElementVisible(int seconds, By locator){
+
+        WebDriverWait wait = new WebDriverWait(WebDriverManager.getInstance(), seconds);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+
+    }
 
 }

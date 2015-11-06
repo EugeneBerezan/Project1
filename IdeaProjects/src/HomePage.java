@@ -21,7 +21,9 @@ public class HomePage extends AbstractPage {
     private By ROUND_TRIP_CHECKBOX_LOCATOR = By.id("round_trip");
     private By COMPLEX_FLIGHT_CHECKBOX_LOCATOR = By.id("complex_flight");
     private By FROM_INPUT_LOCATOR = By.id("from_name");
+    private By FROM_INPUT_FIRST_RESULT_LOCATOR = By.xpath("//ul[@id='ui-id-1']/li[@class='ui-menu-item'][1]");
     private By TO_INPUT_LOCATOR = By.id("to_name");
+    private By TO_INPUT_FIRST_RESULT_LOCATOR = By.xpath("//ul[@id='ui-id-2']/li[@class='ui-menu-item'][1]");
     private By CLASS_SELECTION_DROP_DAWN_LOCATOR = By.id("Class_Select");
     private By DEPARTURE_FROM_DATE_SELECT_LOCATOR = By.id("departure_date");
     private By DEPARTURE_DATE_FROM_EXACT_TIME_SELEC_LOCATOR = By.id("(//div[contains(.,'time_field')]//a[contains(@id,'Selector')])[1]");
@@ -51,16 +53,20 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage inputFromLocation(String travelingFrom) {
+    public HomePage selectFromLocation(String travelingFrom) {
 
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
+        waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
+        driver.findElement(FROM_INPUT_FIRST_RESULT_LOCATOR).click();
 
         return this;
     }
 
-    public HomePage inputToLocation(String travelingTo) {
+    public HomePage selectToLocation(String travelingTo) {
 
         driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
+        waitForElementVisible(10, TO_INPUT_FIRST_RESULT_LOCATOR);
+        driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
 
         return this;
     }
@@ -82,12 +88,19 @@ public class HomePage extends AbstractPage {
     /**
      * @param dateOfArrival = format "30.12.2012"
      */
-    public HomePage selectDateOfArrival(String dateOfArrival) {
-
-        driver.findElement(ARRIVAL_TO_DATE_SELECT_LOCATOR).click();
-
+    public HomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
+        
+        selectDate(dateOfArrival);
 
         return this;
+    }
+
+    public HomePage clickSearchButton() {
+
+        driver.findElement(SEARCH_BUTON_LOCATOR).click();
+
+        return this;
+
     }
 
 
