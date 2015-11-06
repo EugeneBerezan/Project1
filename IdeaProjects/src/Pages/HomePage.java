@@ -3,7 +3,6 @@ package Pages;
 import org.openqa.selenium.By;
 
 
-
 public class HomePage extends AbstractPage {
 
     public HomePage homePage;
@@ -13,6 +12,11 @@ public class HomePage extends AbstractPage {
     private By AVIA_TICKETS_LINK_LOCATOR = By.xpath("//li[@class='avia active']/a");
     private By GD_TICKETS_LINK_LOCATOR = By.xpath("//li[contains(@class,'gd')]/a");
     private By BUS_TICKET_LINK_LOCATOR = By.xpath("//li[contains(@class,'bus')]/a");
+
+
+    //this is a test of merge 
+
+
     private By HOTEL_LINK_LOCATOR = By.xpath("//li[contains(@class,'hotels')]/a");
     private By INSURANCE_LINK_LOCATOR = By.xpath("//li[contains(@class,'insurance')]/a");
     private By TRANSFER_LINK_LOCATOR = By.xpath("//li[contains(@class,'transfer')]/a");
