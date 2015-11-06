@@ -1,5 +1,9 @@
+package Tests;
+
+import Pages.HomePage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
+import Driver.WebDriverManager;
 
 public class Tests {
 

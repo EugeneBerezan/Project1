@@ -1,4 +1,8 @@
+package Pages;
+
 import org.openqa.selenium.By;
+
+
 
 public class HomePage extends AbstractPage {
 
@@ -56,7 +60,7 @@ public class HomePage extends AbstractPage {
     public HomePage selectFromLocation(String travelingFrom) {
 
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
-        waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
+        AbstractPage.waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
         driver.findElement(FROM_INPUT_FIRST_RESULT_LOCATOR).click();
 
         return this;
@@ -65,7 +69,7 @@ public class HomePage extends AbstractPage {
     public HomePage selectToLocation(String travelingTo) {
 
         driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
-        waitForElementVisible(10, TO_INPUT_FIRST_RESULT_LOCATOR);
+        AbstractPage.waitForElementVisible(10, TO_INPUT_FIRST_RESULT_LOCATOR);
         driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
 
         return this;
@@ -89,7 +93,7 @@ public class HomePage extends AbstractPage {
      * @param dateOfArrival = format "30.12.2012"
      */
     public HomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
-        
+
         selectDate(dateOfArrival);
 
         return this;

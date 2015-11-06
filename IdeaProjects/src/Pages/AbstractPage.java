@@ -1,14 +1,17 @@
+package Pages;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import Driver.WebDriverManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractPage {
+public class AbstractPage {
 
     WebDriver driver = WebDriverManager.getInstance();
 
@@ -41,8 +44,6 @@ public abstract class AbstractPage {
 
     public void selectDate(String date) throws InterruptedException {
 
-        log.error("test");
-
         By NEXT_MONTH_LOCATOR = By.xpath("//span[text()='Next']");
         By CURRENT_MONTH_LOCATOR = By.xpath("//div[@id='ui-datepicker-div']/div[1]//div[@class='ui-datepicker-title']/span[1]");
 
@@ -74,7 +75,7 @@ public abstract class AbstractPage {
     }
 
 
-    public static void waitForElementVisible(int seconds, By locator){
+    public static void waitForElementVisible(int seconds, By locator) {
 
         WebDriverWait wait = new WebDriverWait(WebDriverManager.getInstance(), seconds);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
