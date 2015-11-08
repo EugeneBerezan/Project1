@@ -15,16 +15,20 @@ public class WebDriverManager {
     }
 
     public static WebDriver getInstance() {
+        if (driver == null) {
 
-        driver = new FirefoxDriver();
-        driver.manage().window().maximize();
+            driver = new FirefoxDriver();
+            driver.manage().window().maximize();
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        driver.get("http://tickets.ua");
+            driver.get("http://tickets.ua");
+        } else {
+
+            return driver;
+        }
 
         return driver;
-
     }
 
     public static void close() {

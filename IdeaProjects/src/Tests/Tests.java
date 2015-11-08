@@ -1,14 +1,21 @@
 package Tests;
 
 import Pages.HomePage;
+import Pages.ResultPage;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import Driver.WebDriverManager;
 
 public class Tests {
 
-    @AfterTest
+    @AfterMethod
     public static void tearDawn() {
+        WebDriverManager.close();
+    }
+
+    @AfterTest
+    public static void closeDriver() {
         WebDriverManager.close();
     }
 
@@ -22,7 +29,25 @@ public class Tests {
                 .selectDateOfDeparture("12.02.2016")
                 .selectDateOfArrival("27.02.2016")
                 .clickSearchButton();
+        new ResultPage()
+                .waitUntilRouteIsCalculated();
+
 
     }
 
+
+    @Test
+    public void secondTest() throws Exception {
+
+        new HomePage()
+                .clickOnAviaTickets()
+                .selectFromLocation("Moscow")
+                .selectToLocation("Los Angeles")
+                .selectDateOfDeparture("25.04.16")
+                .selectDateOfArrival("02.08.16")
+                .clickSearchButton();
+        new ResultPage()
+                .waitUntilRouteIsCalculated();
+
+    }
 }
