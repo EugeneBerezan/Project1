@@ -30,7 +30,8 @@ public class Tests {
                 .selectDateOfArrival("27.02.2016")
                 .clickSearchButton();
         new ResultPage()
-                .waitUntilRouteIsCalculated();
+                .waitUntilRouteIsCalculated()
+                .changeСurrencyToUSD();
 
 
     }
@@ -44,10 +45,11 @@ public class Tests {
                 .selectFromLocation("Moscow")
                 .selectToLocation("Los Angeles")
                 .selectDateOfDeparture("25.04.16")
-                .selectDateOfArrival("02.08.16")
+                .selectDateOfArrival("28.04.16")
                 .clickSearchButton();
         new ResultPage()
-                .waitUntilRouteIsCalculated();
+                .waitUntilRouteIsCalculated()
+                .changeСurrencyToUSD();
 
     }
 }

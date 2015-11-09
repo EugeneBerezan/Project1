@@ -21,8 +21,8 @@ public class AbstractPage {
 
     WebDriver driver = WebDriverManager.getInstance();
 
-    public static void sleep(int miliseconds) throws InterruptedException {
-        Thread.sleep(miliseconds);
+    public static void sleep(int millis) throws InterruptedException {
+        Thread.sleep(millis);
     }
 
     Logger log = LogManager.getLogger(getClass());
@@ -48,7 +48,9 @@ public class AbstractPage {
         return month.get(monthName);
     }
 
-    public void selectDateFrom(String date) throws InterruptedException {
+    public void selectDate(String date) throws InterruptedException {
+
+        log.entry("Selecting date");
 
         String[] splitedDate = date.split("\\.");
 
@@ -63,7 +65,6 @@ public class AbstractPage {
             currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
 
         } catch (StaleElementReferenceException e) {
-            log.error("No Element found...");
 
             currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
             currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
@@ -95,10 +96,9 @@ public class AbstractPage {
 
                 } catch (NoSuchElementException e) {
 
-                    log.error("No Element found...");
-
                     currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
                     currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
+
                 }
 
                 if (!splitedDate[1].equals(getMonthNumber(currentMonth)) || !splitedDate[2].equals(currentYear)) {
@@ -109,107 +109,20 @@ public class AbstractPage {
             }
 
             sleep(1000);
-            for (int i = 0; i < 3; i++) {
-
-                waitForElementVisible(20, SELECT_DATE_LOCATOR);
-
-                try {
-
-                    driver.findElement(SELECT_DATE_LOCATOR).click();
-
-                } catch (NoSuchElementException | StaleElementReferenceException e) {
-                    log.error("Date was not clicked. " + e.getMessage());
-
-                    driver.findElement(SELECT_DATE_LOCATOR).click();
-
-                }
-            }
-        }
-
-    }
-
-    public void selectDateTo(String date) throws InterruptedException {
-
-        String[] splitedDate = date.split("\\.");
-
-        By NEXT_MONTH_LOCATOR = By.xpath("//span[text()='Next']");
-        By CURRENT_MONTH_LOCATOR = By.xpath("//div[@id='ui-datepicker-div']/div[2]//div[@class='ui-datepicker-title']/span[1]");
-        By SELECT_DATE_LOCATOR = By.xpath("//div[@id='ui-datepicker-div']/div[2]//tbody//td/a[text()='" + splitedDate[0] + "']");
-        By CURRENT_YEAR_LOCATOR = By.xpath("//div[@id='ui-datepicker-div']/div[2]//div[@class='ui-datepicker-title']/span[2]");
-
-        try {
-
-            currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
-            currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
-
-        } catch (StaleElementReferenceException e) {
-            log.error("No Element found...");
-
-            currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
-            currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
-        }
-
-
-        if (splitedDate[1].equals(getMonthNumber(currentMonth)) && splitedDate[2].equals(currentYear)) {
 
             waitForElementVisible(20, SELECT_DATE_LOCATOR);
+
             try {
 
                 driver.findElement(SELECT_DATE_LOCATOR).click();
-            } catch (NoSuchElementException e) {
 
-                log.error(e.getMessage());
+            } catch (NoSuchElementException | StaleElementReferenceException e) {
 
                 driver.findElement(SELECT_DATE_LOCATOR).click();
-            }
 
-
-        } else {
-
-            for (int i = 0; i < 24; i++) {
-
-                try {
-
-                    currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
-                    currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
-
-                } catch (NoSuchElementException e) {
-
-                    log.error("No Element found...");
-
-                    currentMonth = driver.findElement(CURRENT_MONTH_LOCATOR).getText();
-                    currentYear = driver.findElement(CURRENT_YEAR_LOCATOR).getText();
-                }
-
-                if (!splitedDate[1].equals(getMonthNumber(currentMonth)) || !splitedDate[2].equals(currentYear)) {
-
-                    driver.findElement(NEXT_MONTH_LOCATOR).click();
-                    sleep(500);
-                }
-            }
-
-            sleep(1000);
-            for (int i = 0; i < 3; i++) {
-
-                try {
-
-                    driver.findElement(SELECT_DATE_LOCATOR).click();
-
-                    if (driver.findElement(NEXT_MONTH_LOCATOR).isDisplayed()) {
-                        break;
-                    }
-
-                } catch (NoSuchElementException | StaleElementReferenceException e) {
-                    log.error("Date was not clicked. " + e.getMessage());
-
-                    driver.findElement(SELECT_DATE_LOCATOR).click();
-
-                }
             }
         }
-
     }
-
 
     public static void waitForElementVisible(int seconds, By locator) {
 

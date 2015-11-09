@@ -89,7 +89,7 @@ public class HomePage extends AbstractPage {
 
         driver.findElement(DEPARTURE_FROM_DATE_SELECT_LOCATOR).click();
 
-        selectDateFrom(dateOfDeparture);
+        selectDate(dateOfDeparture);
 
         return this;
     }
@@ -100,7 +100,7 @@ public class HomePage extends AbstractPage {
      */
     public HomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
 
-        selectDateTo(dateOfArrival);
+        selectDate(dateOfArrival);
 
         return this;
     }
