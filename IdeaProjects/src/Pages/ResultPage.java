@@ -1,6 +1,5 @@
 package Pages;
 
-import org.apache.xpath.operations.String;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * Created by EugeneBerezan on 11/6/15.
  */
-public class ResultPage extends AbstractPage{
+public class ResultPage extends AbstractPage {
 
     public ResultPage() {
 
@@ -18,17 +17,17 @@ public class ResultPage extends AbstractPage{
 
     private static final By AIRLINES_LABEL_LOCATOR = By.xpath("//a[text()='Авиакомпании']");
     private static final By USD_CURRENCY_LABEL_LOCATOR = By.xpath("//span[text()='USD']");
-    private static final By PRICE_IN_USD = By.xpath("//a[@class='price_cell']/span[contains(text(),'USD')]");
+    private static final By PRICE_IN_USD = By.xpath("//a[@class='price_cell']/span[contains(@class,'new_price') and contains(text(),'USD')]");
 
 
-    public ResultPage waitUntilRouteIsCalculated(){
+    public ResultPage waitUntilRouteIsCalculated() {
 
         waitForElementVisible(60, AIRLINES_LABEL_LOCATOR);
 
         return this;
     }
 
-    public ResultPage changeСurrencyToUSD(){
+    public ResultPage changeСurrencyToUSD() {
 
         waitForElementVisible(30, USD_CURRENCY_LABEL_LOCATOR);
         driver.findElement(USD_CURRENCY_LABEL_LOCATOR).click();
@@ -36,14 +35,38 @@ public class ResultPage extends AbstractPage{
         return this;
     }
 
-    public ResultPage saveAllPrices(){
+    public void saveMinPrice() {
 
-        List<WebElement> elements = new ArrayList<>();
+        List<WebElement> elements = driver.findElements(PRICE_IN_USD);
+        List<String> banans = new ArrayList<>();
+//        List<Integer> price = new ArrayList<>();
 
-        elements = driver.findElements(PRICE_IN_USD);
+        for (WebElement element : elements) {
 
-        return this;
+            String text = element.getText();
+            String[] dollar = text.trim().split(" ");
+
+            if (!"".equals(dollar[0])) {
+
+                banans.add(dollar[0]);
+
+            }
+
+        }
+
+        Integer min = Integer.parseInt(banans.get(1));
+
+        for (String aBanan : banans) {
+
+            if (Integer.parseInt(aBanan) < min) {
+
+                min = Integer.parseInt(aBanan);
+
+//                price.add(Integer.parseInt(String.valueOf(banans)));
+            }
+
+        }
+
     }
-
 
 }

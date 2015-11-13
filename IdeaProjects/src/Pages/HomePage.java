@@ -72,6 +72,7 @@ public class HomePage extends AbstractPage {
 
             AbstractPage.waitForElementVisible(10, TO_INPUT_FIRST_RESULT_LOCATOR);
             driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
+
         } catch (TimeoutException e) {
 
             log.error("\"To\" location was not selected");

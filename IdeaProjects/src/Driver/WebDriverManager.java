@@ -40,4 +40,10 @@ public class WebDriverManager {
 
     }
 
+    public static void sleep(int milis) throws InterruptedException {
+
+        Thread.sleep(milis);
+
+    }
+
 }

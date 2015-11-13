@@ -31,8 +31,8 @@ public class Tests {
                 .clickSearchButton();
         new ResultPage()
                 .waitUntilRouteIsCalculated()
-                .changeСurrencyToUSD();
-
+                .changeСurrencyToUSD()
+                .saveMinPrice();
 
     }
 
