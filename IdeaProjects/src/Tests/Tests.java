@@ -2,10 +2,12 @@ package Tests;
 
 import Pages.HomePage;
 import Pages.ResultPage;
+import Pages.AbstractPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import Driver.WebDriverManager;
+
 
 public class Tests {
 
@@ -22,17 +24,26 @@ public class Tests {
     @Test
     public void firstTest() throws Exception {
 
+        String locationFrom = "Kiev";
+        String locationTo = "New York";
+        String dateFrom = "12.02.2016";
+        String dateTo = "27.02.2016";
+
+
         new HomePage()
                 .clickOnAviaTickets()
-                .selectFromLocation("Kiev")
-                .selectToLocation("New York")
-                .selectDateOfDeparture("12.02.2016")
-                .selectDateOfArrival("27.02.2016")
+                .selectFromLocation(locationFrom)
+                .selectToLocation(locationTo)
+                .selectDateOfDeparture(dateFrom)
+                .selectDateOfArrival(dateTo)
                 .clickSearchButton();
         new ResultPage()
                 .waitUntilRouteIsCalculated()
                 .changeСurrencyToUSD()
                 .saveMinPrice();
+        new ResultPage()
+                .insertPriceIntoTableTickets(locationFrom, locationTo, dateFrom, dateTo, AbstractPage.currentDate());
+
 
     }
 

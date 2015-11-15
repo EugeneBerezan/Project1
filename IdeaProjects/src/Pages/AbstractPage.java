@@ -2,7 +2,6 @@ package Pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.StringBuilders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -11,6 +10,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import Driver.WebDriverManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -135,6 +136,14 @@ public class AbstractPage {
 
         WebDriverWait wait = new WebDriverWait(WebDriverManager.getInstance(), seconds);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+
+    }
+
+    public static String currentDate(){
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd '|' HH:mm:ss");
+
+        return dateFormat.format(new Date());
 
     }
 

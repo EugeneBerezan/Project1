@@ -1,14 +1,13 @@
 package Pages;
 
+import Driver.DataBaseConnection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by EugeneBerezan on 11/6/15.
- */
 public class ResultPage extends AbstractPage {
 
     public ResultPage() {
@@ -35,11 +34,10 @@ public class ResultPage extends AbstractPage {
         return this;
     }
 
-    public void saveMinPrice() {
+    public Integer saveMinPrice() {
 
         List<WebElement> elements = driver.findElements(PRICE_IN_USD);
         List<String> banans = new ArrayList<>();
-//        List<Integer> price = new ArrayList<>();
 
         for (WebElement element : elements) {
 
@@ -62,10 +60,18 @@ public class ResultPage extends AbstractPage {
 
                 min = Integer.parseInt(aBanan);
 
-//                price.add(Integer.parseInt(String.valueOf(banans)));
             }
 
         }
+        return min;
+    }
+
+    public void insertPriceIntoTableTickets(String locationFrom, String locationTo, String dateFrom, String dateTo, String currentDate) throws SQLException {
+
+        String preparedSQL = "INSERT INTO TICKETS(1, " + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + saveMinPrice() + ", " + currentDate + " )";
+
+        DataBaseConnection.GetConnection(preparedSQL);
+
 
     }
 
