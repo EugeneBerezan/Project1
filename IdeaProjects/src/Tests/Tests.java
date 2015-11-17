@@ -2,14 +2,18 @@ package Tests;
 
 import Pages.HomePage;
 import Pages.ResultPage;
-import Pages.AbstractPage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.Test;
 import Driver.WebDriverManager;
+import Driver.DataBaseConnection;
 
 
 public class Tests {
+
+    ResultPage resultPage = new ResultPage();
+    HomePage homePage = new HomePage();
+    DataBaseConnection dataBase = new DataBaseConnection();
 
     @AfterMethod
     public static void tearDawn() {
@@ -29,20 +33,21 @@ public class Tests {
         String dateFrom = "12.02.2016";
         String dateTo = "27.02.2016";
 
-
-        new HomePage()
+        homePage
                 .clickOnAviaTickets()
                 .selectFromLocation(locationFrom)
                 .selectToLocation(locationTo)
                 .selectDateOfDeparture(dateFrom)
                 .selectDateOfArrival(dateTo)
                 .clickSearchButton();
-        new ResultPage()
+        resultPage
                 .waitUntilRouteIsCalculated()
                 .changeСurrencyToUSD()
-                .saveMinPrice();
-        new ResultPage()
-                .insertPriceIntoTableTickets(locationFrom, locationTo, dateFrom, dateTo, AbstractPage.currentDate());
+                .getMinPrice();
+        dataBase
+                .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice());
+        dataBase
+                .getResult();
 
 
     }

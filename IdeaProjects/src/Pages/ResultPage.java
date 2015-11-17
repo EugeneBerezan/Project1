@@ -10,6 +10,9 @@ import java.util.List;
 
 public class ResultPage extends AbstractPage {
 
+    DataBaseConnection connection = new DataBaseConnection();
+
+
     public ResultPage() {
 
     }
@@ -34,7 +37,7 @@ public class ResultPage extends AbstractPage {
         return this;
     }
 
-    public Integer saveMinPrice() {
+    public Integer getMinPrice() {
 
         List<WebElement> elements = driver.findElements(PRICE_IN_USD);
         List<String> banans = new ArrayList<>();
@@ -68,9 +71,9 @@ public class ResultPage extends AbstractPage {
 
     public void insertPriceIntoTableTickets(String locationFrom, String locationTo, String dateFrom, String dateTo, String currentDate) throws SQLException {
 
-        String preparedSQL = "INSERT INTO TICKETS(1, " + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + saveMinPrice() + ", " + currentDate + " )";
+        String preparedSQL = "INSERT INTO TICKETS(1, " + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + getMinPrice() + ", " + currentDate + " )";
 
-        DataBaseConnection.GetConnection(preparedSQL);
+        connection.getDataSource();
 
 
     }
