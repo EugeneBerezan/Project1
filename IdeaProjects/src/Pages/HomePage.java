@@ -75,7 +75,7 @@ public class HomePage extends AbstractPage {
 
         } catch (TimeoutException e) {
 
-            log.error("\"To\" location was not selected");
+            log.error("\"To\" location was not selected: " + e.getMessage());
 
         }
 

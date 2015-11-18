@@ -22,11 +22,11 @@ public class DataBaseConnection {
     public java.sql.Connection getDataSource() {
 
         try {
+            log.info("Trying to get Data Source");
             connection = DriverManager.getConnection(url, username, password);
 
         } catch (SQLException e) {
-            e.getMessage();
-
+            log.error("Something wrong with connection" + e.getMessage());
         }
         return connection;
 
@@ -35,12 +35,13 @@ public class DataBaseConnection {
     public void closeConnection() throws SQLException {
 
         try {
+            log.info("Closing connection");
             connection.close();
             statement.close();
             if (preparedStatemt != null) preparedStatemt.close();
-
+            log.info("Connection closed");
         } catch (SQLException e) {
-            e.getMessage();
+            log.error("Something wrong with closing connection" + e.getMessage());
 
         }
 
@@ -48,13 +49,17 @@ public class DataBaseConnection {
 
     public void insertInfoIntoTable(String locationFrom, String locationTo, String dateFrom, String dateTo, Integer price) {
 
+        log.info("Creating DataSource for INSERT operation");
         connection = getDataSource();
 
-        String sql = " INSERT INTO `TICKETS` (" + locationFrom + ", " + locationTo + ", "+ dateFrom +", " +dateTo + ", " + price + ", " + AbstractPage.currentDate() +")";
+        String sql = " INSERT INTO `TICKETS` (" + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + price + ", " + AbstractPage.currentDate() + ")";
 
         try {
+            log.info("Creating statement");
             statement = connection.createStatement();
+            log.info("Executing SQL INSERT with parameters | "+locationFrom +" | " + locationTo + " | ");
             statement.executeQuery(sql);
+            log.info("Saving result to resultSet");
             resultSet = statement.executeQuery(sql);
             closeConnection();
         } catch (SQLException e) {
@@ -65,6 +70,7 @@ public class DataBaseConnection {
 
     public String getResult() throws SQLException {
 
+        log.info("Retrieving results from table");
         String result = "";
         while (resultSet.next()) {
 
@@ -77,7 +83,7 @@ public class DataBaseConnection {
             String dateOfExecution = resultSet.getString("execution_date");
 
 
-            result += id + " : " + locationFrom + " : " + locationTo + " : " + " : " + dateFrom +  " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
+            result += id + " : " + locationFrom + " : " + locationTo + " : " + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
         }
         return result.equals("") ? "no data found  " : result;
 
