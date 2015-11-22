@@ -58,7 +58,6 @@ public class DataBaseConnection {
             statement = connection.createStatement();
             log.info("Executing SQL INSERT with parameters | " + locationFrom + " | " + locationTo + " | ");
             statement.executeUpdate(sql);
-            log.info("Saving result to resultSet");
         } catch (SQLException e) {
             e.printStackTrace();
         }
