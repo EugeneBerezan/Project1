@@ -40,7 +40,7 @@ public class ResultPage extends AbstractPage {
     public Integer getMinPrice() {
 
         List<WebElement> elements = driver.findElements(PRICE_IN_USD);
-        List<String> banans = new ArrayList<>();
+        List<String> banans = new ArrayList<String>();
 
         for (WebElement element : elements) {
 

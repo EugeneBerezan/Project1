@@ -3,7 +3,6 @@ package Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import Pages.AbstractPage;
-import org.apache.logging.log4j.core.pattern.RelativeTimePatternConverter;
 
 import java.sql.*;
 
