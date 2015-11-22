@@ -45,8 +45,7 @@ public class Tests {
                 .changeСurrencyToUSD()
                 .getMinPrice();
         dataBase
-                .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice());
-        dataBase
+                .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
                 .getResult();
 
 

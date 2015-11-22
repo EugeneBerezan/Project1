@@ -3,6 +3,7 @@ package Driver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import Pages.AbstractPage;
+import org.apache.logging.log4j.core.pattern.RelativeTimePatternConverter;
 
 import java.sql.*;
 
@@ -46,7 +47,7 @@ public class DataBaseConnection {
 
     }
 
-    public void insertInfoIntoTable(String locationFrom, String locationTo, String dateFrom, String dateTo, Integer price) {
+    public DataBaseConnection insertInfoIntoTable(String locationFrom, String locationTo, String dateFrom, String dateTo, Integer price) {
 
         log.info("Creating DataSource for INSERT operation");
         connection = getDataSource();
@@ -61,10 +62,11 @@ public class DataBaseConnection {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return this;
 
     }
 
-    public void getResult() throws SQLException {
+    public DataBaseConnection getResult() throws SQLException {
 
         log.info("Retrieving results from table");
         String sql = "SELECT * FROM `TICKETS`";
@@ -87,7 +89,7 @@ public class DataBaseConnection {
         closeConnection();
 
         System.out.println(result);
-
+        return this;
     }
 
 

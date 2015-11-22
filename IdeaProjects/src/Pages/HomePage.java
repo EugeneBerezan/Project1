@@ -42,6 +42,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickOnTickets() throws InterruptedException {
 
+        log.info("Clicking on Tickets");
         driver.findElement(TICKETS_UA_HOME_LINK_LOCATOR).click();
 
         return this;
@@ -49,6 +50,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickOnAviaTickets() throws Exception {
 
+        log.info("Clicking on AVIATICKETS");
         driver.findElement(AVIA_TICKETS_LINK_LOCATOR).click();
 
         return this;
@@ -56,6 +58,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage selectFromLocation(String travelingFrom) throws InterruptedException {
 
+        log.info("Selecting location \"FROM\"");
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
         sleep(500);
         AbstractPage.waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
@@ -70,7 +73,8 @@ public class HomePage extends AbstractPage {
 
         try {
 
-            AbstractPage.waitForElementVisible(10, TO_INPUT_FIRST_RESULT_LOCATOR);
+            log.info("Selecting location \"TO\"");
+            AbstractPage.waitForElementVisible(20, TO_INPUT_FIRST_RESULT_LOCATOR);
             driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
 
         } catch (TimeoutException e) {
@@ -88,6 +92,7 @@ public class HomePage extends AbstractPage {
      */
     public HomePage selectDateOfDeparture(String dateOfDeparture) throws InterruptedException {
 
+        log.info("Selecting date of depatrute with date: " + dateOfDeparture);
         driver.findElement(DEPARTURE_FROM_DATE_SELECT_LOCATOR).click();
 
         selectDate(dateOfDeparture);
@@ -101,6 +106,7 @@ public class HomePage extends AbstractPage {
      */
     public HomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
 
+        log.info("Selecting date of Arrival with date: " + dateOfArrival);
         selectDate(dateOfArrival);
 
         return this;
@@ -108,6 +114,7 @@ public class HomePage extends AbstractPage {
 
     public HomePage clickSearchButton() {
 
+        log.info("Clicking on \"Search\" button");
         driver.findElement(SEARCH_BUTON_LOCATOR).click();
 
         return this;
