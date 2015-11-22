@@ -17,7 +17,6 @@ public class DataBaseConnection {
     static java.sql.Connection connection = null;
     private java.sql.Statement statement = null;
     private com.mysql.jdbc.PreparedStatement preparedStatemt = null;
-    private ResultSet resultSet;
 
     public java.sql.Connection getDataSource() {
 
@@ -52,25 +51,25 @@ public class DataBaseConnection {
         log.info("Creating DataSource for INSERT operation");
         connection = getDataSource();
 
-        String sql = " INSERT INTO `TICKETS` (" + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + price + ", " + AbstractPage.currentDate() + ")";
-
+        String sql = "INSERT INTO `TICKETS`(`LOCATION_FROM`, `LOCATION_TO`, `DATE_FROM`, `DATE_TO`, `PRICE`, `EXECUTION_DATE`) VALUES (\"" + locationFrom + "\", \"" + locationTo + "\",\"" + dateFrom + "\",\"" + dateTo + "\",\"" + price + "\",\"" + AbstractPage.currentDate() + "\")";
         try {
             log.info("Creating statement");
             statement = connection.createStatement();
-            log.info("Executing SQL INSERT with parameters | "+locationFrom +" | " + locationTo + " | ");
-            statement.executeQuery(sql);
+            log.info("Executing SQL INSERT with parameters | " + locationFrom + " | " + locationTo + " | ");
+            statement.executeUpdate(sql);
             log.info("Saving result to resultSet");
-            resultSet = statement.executeQuery(sql);
-            closeConnection();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
 
-    public String getResult() throws SQLException {
+    public void getResult() throws SQLException {
 
         log.info("Retrieving results from table");
+        String sql = "SELECT * FROM `TICKETS`";
+
+        ResultSet resultSet = statement.executeQuery(sql);
         String result = "";
         while (resultSet.next()) {
 
@@ -79,13 +78,15 @@ public class DataBaseConnection {
             String locationTo = resultSet.getString("Location_To");
             String dateFrom = resultSet.getString("date_from");
             String dateTo = resultSet.getString("date_to");
-            String price = resultSet.getString("price_usd");
+            String price = resultSet.getString("price");
             String dateOfExecution = resultSet.getString("execution_date");
 
 
             result += id + " : " + locationFrom + " : " + locationTo + " : " + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
         }
-        return result.equals("") ? "no data found  " : result;
+        closeConnection();
+
+        System.out.println(result);
 
     }
 
