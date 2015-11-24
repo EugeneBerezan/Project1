@@ -43,38 +43,28 @@ public class ResultPage extends AbstractPage {
         List<String> banans = new ArrayList<String>();
 
         for (WebElement element : elements) {
-
             String text = element.getText();
             String[] dollar = text.trim().split(" ");
-
             if (!"".equals(dollar[0])) {
-
                 banans.add(dollar[0]);
-
             }
-
         }
 
         Integer min = Integer.parseInt(banans.get(1));
 
         for (String aBanan : banans) {
-
             if (Integer.parseInt(aBanan) < min) {
-
                 min = Integer.parseInt(aBanan);
-
             }
-
         }
         return min;
+
     }
 
     public void insertPriceIntoTableTickets(String locationFrom, String locationTo, String dateFrom, String dateTo, String currentDate) throws SQLException {
 
         String preparedSQL = "INSERT INTO TICKETS(1, " + locationFrom + ", " + locationTo + ", " + dateFrom + ", " + dateTo + ", " + getMinPrice() + ", " + currentDate + " )";
-
         connection.getDataSource();
-
 
     }
 

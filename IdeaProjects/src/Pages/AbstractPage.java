@@ -31,7 +31,7 @@ public class AbstractPage {
 
     public static String getMonthNumber(String monthName) {
 
-        Map<String, String> month = new HashMap<>();
+        Map<String, String> month = new HashMap<String, String>();
 
         month.put("Январь", "01");
         month.put("Февраль", "02");
