@@ -14,11 +14,11 @@ public class DataBaseConnection {
     final String username = "user01";
     final String password = "user01";
     final String url = "jdbc:mysql://db4free.net:3306/myfirstdatabase";
-    static java.sql.Connection connection = null;
-    private java.sql.Statement statement = null;
-    private com.mysql.jdbc.PreparedStatement preparedStatemt = null;
+    static Connection connection = null;
+    private Statement statement = null;
+    private PreparedStatement preparedStatemt = null;
 
-    public java.sql.Connection getDataSource() {
+    public Connection getDataSource() {
 
         try {
             log.info("Trying to get Data Source");
