@@ -12,7 +12,8 @@ public class WebDriverManager {
 
     private static WebDriver driver;
 
-    private WebDriverManager() {
+    public WebDriverManager(WebDriver driver) {
+        this.driver = driver;
     }
 
     public static WebDriver getInstance() {
@@ -22,8 +23,7 @@ public class WebDriverManager {
             driver.manage().window().maximize();
 
             driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-            driver.get("http://tickets.ua");
+            
         } else {
 
             return driver;

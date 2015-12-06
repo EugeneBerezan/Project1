@@ -1,3 +1,4 @@
+package TicketsUA;
 
 import org.testng.annotations.Test;
 
@@ -15,7 +16,7 @@ public class Test2 extends TestBase {
                 .clickOnAviaTickets()
                 .selectFromLocation(locationFrom)
                 .selectToLocation(locationTo)
-                .selectDateOfDeparture(locationFrom)
+                .selectDateOfDeparture(dateFrom)
                 .selectDateOfArrival(dateTo)
                 .clickSearchButton();
         resultPage

@@ -1,8 +1,9 @@
+package TicketsUA;
 
 import org.testng.annotations.Test;
 
 
-public class Test1 extends TestBase{
+public class Test1 extends TestBase {
 
     @Test
     public void firstTest() throws Exception {
@@ -26,7 +27,6 @@ public class Test1 extends TestBase{
         dataBase
                 .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
                 .getResult();
-
 
     }
 }

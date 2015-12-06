@@ -8,9 +8,8 @@
     <name>IdeaProjects</name>
     <url>http://maven.apache.org</url>
     <build>
-        <testSourceDirectory>${basedir}/src/Tests/Tests</testSourceDirectory>
+        <testSourceDirectory>${basedir}/src/Tests/java/</testSourceDirectory>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -59,6 +58,11 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-firefox-driver</artifactId>
+            <version>2.46.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-support</artifactId>
             <version>2.46.0</version>
         </dependency>
     </dependencies>

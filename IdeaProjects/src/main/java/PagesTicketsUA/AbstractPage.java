@@ -1,4 +1,4 @@
-package Pages;
+package PagesTicketsUA;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -109,7 +109,7 @@ public class AbstractPage {
                 }
             }
 
-            sleep(1000);
+//            sleep(1000);
 
             waitForElementVisible(20, SELECT_DATE_LOCATOR);
 

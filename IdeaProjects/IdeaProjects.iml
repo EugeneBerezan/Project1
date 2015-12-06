@@ -5,8 +5,7 @@
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/Tests/Tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/Tests/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
@@ -41,7 +40,6 @@
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna-platform:4.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-safari-driver:2.46.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-support:2.46.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.webbitserver:webbit:0.4.14" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: io.netty:netty:3.5.2.Final" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-leg-rc:2.46.0" level="project" />
@@ -60,5 +58,6 @@
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.3" level="project" />
+    <orderEntry type="library" name="Maven: org.seleniumhq.selenium:selenium-support:2.46.0" level="project" />
   </component>
 </module>
