@@ -36,7 +36,6 @@ public class HomePage extends AbstractPage {
 
     public HomePage() {
 
-
     }
 
 
@@ -61,7 +60,7 @@ public class HomePage extends AbstractPage {
         log.info("Selecting location \"FROM\"");
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
         sleep(500);
-        AbstractPage.waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
+        waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
         driver.findElement(FROM_INPUT_FIRST_RESULT_LOCATOR).click();
 
         return this;
@@ -74,7 +73,7 @@ public class HomePage extends AbstractPage {
         try {
 
             log.info("Selecting location \"TO\"");
-            AbstractPage.waitForElementVisible(20, TO_INPUT_FIRST_RESULT_LOCATOR);
+            waitForElementVisible(20, TO_INPUT_FIRST_RESULT_LOCATOR);
             driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
 
         } catch (TimeoutException e) {
