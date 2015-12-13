@@ -46,7 +46,6 @@ public class AbstractPage {
 
 
         By CURRENT_MONTH_LOCATOR = By.xpath("//div[contains(@class,'first')]//span[@class='ui-datepicker-month'][1]");
-//        By NEXT_MONTH_LOCATOR = By.xpath("//div[contains(@class,'last')]//span[@class='ui-datepicker-month'][1]");
         By NEXT_MONTH_ARROW_LOCATOR = By.xpath("//div[contains(@class,'last')]//span[contains(@class,'circle-triangle')]");
         By DATE_LOCATOR = By.xpath("//div[contains(@class,'first')]//a[text()='" + splitedDate[0] + "']");
 

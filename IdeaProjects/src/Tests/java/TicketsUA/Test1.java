@@ -5,10 +5,6 @@ import org.testng.annotations.Test;
 
 public class Test1 extends TestBase {
 
-    public static void main(String[] args) {
-
-    }
-
     @Test
     public void firstTest() throws Exception {
 

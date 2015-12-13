@@ -28,7 +28,6 @@ public class DataBaseConnection {
             log.error("Something wrong with connection" + e.getMessage());
         }
         return connection;
-
     }
 
     public void closeConnection() throws SQLException {
@@ -36,14 +35,13 @@ public class DataBaseConnection {
         try {
             log.info("Closing connection");
             connection.close();
-            statement.close();
+//            statement.close();
             if (preparedStatemt != null) preparedStatemt.close();
             log.info("Connection closed");
         } catch (SQLException e) {
             log.error("Something wrong with closing connection" + e.getMessage());
 
         }
-
     }
 
     public DataBaseConnection insertInfoIntoTable(String locationFrom, String locationTo, String dateFrom, String dateTo, Integer price) {
@@ -84,7 +82,6 @@ public class DataBaseConnection {
 
             result += id + " : " + locationFrom + " : " + locationTo + " : " + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
         }
-        closeConnection();
 
         System.out.println(result);
         return this;
