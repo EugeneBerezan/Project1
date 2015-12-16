@@ -2,6 +2,8 @@ package Avis;
 
 import Driver.DataBaseConnection;
 import Driver.WebDriverManager;
+import PagesAvis.ProtectionAndCoveragePage;
+import PagesAvis.SelectACarPage;
 import PagesTicketsUA.HomePage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -12,17 +14,14 @@ public class TestBase {
 
     HomePage homePage = new HomePage();
     DataBaseConnection dataBase = new DataBaseConnection();
+    ProtectionAndCoveragePage protectionAndCoveragePage = new ProtectionAndCoveragePage();
+    SelectACarPage selectACarPage = new SelectACarPage();
 
     @BeforeClass
     public static void driver(){
 
         WebDriverManager.getInstance().get("http://tickets.ua");
 
-    }
-
-    @AfterMethod
-    public static void tearDawn() {
-        WebDriverManager.close();
     }
 
     @AfterTest

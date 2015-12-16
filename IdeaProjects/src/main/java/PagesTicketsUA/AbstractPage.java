@@ -139,7 +139,7 @@ public class AbstractPage {
 
     }
 
-    public static String currentDate(){
+    public static String currentDate() {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd '|' HH:mm:ss");
 

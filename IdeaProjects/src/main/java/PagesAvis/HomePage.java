@@ -16,7 +16,7 @@ public class HomePage extends AbstractPage{
     public static final By DATE_TO_INPUT_LOCATOR = By.xpath("//input[@id='to']");
     public static final By AGE_SELECT_LOCATOR = By.xpath("//select[@id='age']");
     public static final By RESIDENT_OF_COUNTRY_SELECT_LOCATOR = By.xpath("//select[@id='countrys']");
-    public static final By SELECT_MY_CAR_BUTTON_LOCATOR = By.xpath("//a[text()='Select My Car']");
+    public static final By SELECT_MY_CAR_BUTTON_LOCATOR = By.xpath("//a[@id='selectMyCarId']");
 
 
     public HomePage clickOnAvisHome(){
@@ -62,6 +62,11 @@ public class HomePage extends AbstractPage{
         return this;
     }
 
+    /**
+     *
+     * @param pickUpLocation
+     * full name of the location(for now)
+     */
     public HomePage selectPickUpLocation(String pickUpLocation){
 
         driver.findElement(PICK_A_LOCATION_INPUT_LOCATOR).sendKeys(pickUpLocation);
@@ -76,6 +81,20 @@ public class HomePage extends AbstractPage{
         return this;
     }
 
+    public HomePage selectResidenceOfCountry(String country){
+
+        selectByVisibleText(RESIDENT_OF_COUNTRY_SELECT_LOCATOR, country);
+
+        return this;
+
+    }
+
+    public HomePage clickOnSelectMyCarButton(){
+
+        driver.findElement(SELECT_MY_CAR_BUTTON_LOCATOR).click();
+
+        return this;
+    }
 
 
 }
