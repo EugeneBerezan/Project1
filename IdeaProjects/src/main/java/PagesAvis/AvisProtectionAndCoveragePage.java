@@ -2,24 +2,24 @@ package PagesAvis;
 
 import org.openqa.selenium.By;
 
-public class ProtectionAndCoveragePage extends AbstractPage {
+public class AvisProtectionAndCoveragePage extends AvisAbstractPage {
 
     public static By PERSONAL_ACCIDENT_INSURANCE_CHECKBOX = By.xpath("//input[contains(@id,'paiSelected')]");
     public static By PERSONAL_EFFECTS_PROTECTION_CHECKBOX = By.xpath("//input[contains(@id,'pepSelected')]");
     public static By ESTIMATED_TOTAL_TEXT_LOCATOR = By.xpath("//span[@id='estimatedTotal']");
 
-    public ProtectionAndCoveragePage selectPersonalAccidentInsuranceCheckbox(){
+    public AvisProtectionAndCoveragePage selectPersonalAccidentInsuranceCheckbox(){
 
         driver.findElement(PERSONAL_ACCIDENT_INSURANCE_CHECKBOX).click();
 
-        return new ProtectionAndCoveragePage();
+        return new AvisProtectionAndCoveragePage();
     }
 
-    public ProtectionAndCoveragePage selectPersonalEffectsProtectionCheckbox(){
+    public AvisProtectionAndCoveragePage selectPersonalEffectsProtectionCheckbox(){
 
         driver.findElement(PERSONAL_EFFECTS_PROTECTION_CHECKBOX).click();
 
-        return new ProtectionAndCoveragePage();
+        return new AvisProtectionAndCoveragePage();
     }
 
     public String getTotalPrice(){

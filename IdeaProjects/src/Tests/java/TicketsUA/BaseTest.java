@@ -2,9 +2,8 @@ package TicketsUA;
 
 import Driver.DataBaseConnection;
 import Driver.WebDriverManager;
-import PagesTicketsUA.HomePage;
-import PagesTicketsUA.ResultPage;
-import org.testng.annotations.AfterMethod;
+import PagesTicketsUA.TicketsHomePage;
+import PagesTicketsUA.TicketsResultPage;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -12,10 +11,10 @@ import org.testng.annotations.BeforeClass;
 import java.sql.SQLException;
 
 
-public class TestBase {
+public class BaseTest {
 
-    ResultPage resultPage = new ResultPage();
-    HomePage homePage = new HomePage();
+    TicketsResultPage resultPage = new TicketsResultPage();
+    TicketsHomePage homePage = new TicketsHomePage();
     DataBaseConnection dataBase = new DataBaseConnection();
 
     @BeforeClass

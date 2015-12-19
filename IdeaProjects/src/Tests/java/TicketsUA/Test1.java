@@ -3,7 +3,7 @@ package TicketsUA;
 import org.testng.annotations.Test;
 
 
-public class Test1 extends TestBase {
+public class Test1 extends BaseTest {
 
     @Test
     public void firstTest() throws Exception {

@@ -8,12 +8,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResultPage extends AbstractPage {
+public class TicketsResultPage extends TicketsAbstractPage {
 
     DataBaseConnection connection = new DataBaseConnection();
 
 
-    public ResultPage() {
+    public TicketsResultPage() {
 
     }
 
@@ -22,14 +22,14 @@ public class ResultPage extends AbstractPage {
     private static final By PRICE_IN_USD = By.xpath("//a[@class='price_cell']/span[contains(@class,'new_price') and contains(text(),'USD')]");
 
 
-    public ResultPage waitUntilRouteIsCalculated() {
+    public TicketsResultPage waitUntilRouteIsCalculated() {
 
         waitForElementVisible(60, AIRLINES_LABEL_LOCATOR);
 
         return this;
     }
 
-    public ResultPage changeСurrencyToUSD() {
+    public TicketsResultPage changeСurrencyToUSD() {
 
         waitForElementVisible(30, USD_CURRENCY_LABEL_LOCATOR);
         driver.findElement(USD_CURRENCY_LABEL_LOCATOR).click();

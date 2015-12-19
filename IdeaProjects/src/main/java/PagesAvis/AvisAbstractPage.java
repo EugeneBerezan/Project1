@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractPage {
+public class AvisAbstractPage {
 
     WebDriver driver = WebDriverManager.getInstance();
 
@@ -41,9 +41,9 @@ public class AbstractPage {
     }
 
 
-    public AbstractPage selectDate(String date) {
-        String[] splitedDate = date.split("\\.");
+    public AvisAbstractPage selectDate(String date) {
 
+        String[] splitedDate = date.split("\\.");
 
         By CURRENT_MONTH_LOCATOR = By.xpath("//div[contains(@class,'first')]//span[@class='ui-datepicker-month'][1]");
         By NEXT_MONTH_ARROW_LOCATOR = By.xpath("//div[contains(@class,'last')]//span[contains(@class,'circle-triangle')]");
@@ -51,19 +51,16 @@ public class AbstractPage {
 
         log.entry("Selecting date");
 
-
         try {
 
-            if (driver.findElement(CURRENT_MONTH_LOCATOR).getText().equals(getMonth(splitedDate[1]))) {
+            if (driver.findElement(CURRENT_MONTH_LOCATOR).getText().equals(getMonth(splitedDate[0]))) {
                 driver.findElement(DATE_LOCATOR).click();
             } else {
-                for (; !driver.findElement(CURRENT_MONTH_LOCATOR).getText().equals(getMonth(splitedDate[1])); ) {
-
+                for (;!driver.findElement(CURRENT_MONTH_LOCATOR).getText().equals(getMonth(splitedDate[0])); ) {
 
                     driver.findElement(NEXT_MONTH_ARROW_LOCATOR).click();
                 }
                 driver.findElement(DATE_LOCATOR).click();
-
             }
 
         } catch (Exception e) {

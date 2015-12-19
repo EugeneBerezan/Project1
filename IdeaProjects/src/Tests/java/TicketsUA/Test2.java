@@ -2,7 +2,7 @@ package TicketsUA;
 
 import org.testng.annotations.Test;
 
-public class Test2 extends TestBase {
+public class Test2 extends BaseTest {
 
     @Test
     public void secondTest() throws Exception {

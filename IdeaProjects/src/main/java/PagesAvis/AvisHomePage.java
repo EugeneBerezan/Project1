@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 /**
  * Created by EugeneBerezan on 12/8/15.
  */
-public class HomePage extends AbstractPage{
+public class AvisHomePage extends AvisAbstractPage {
 
     public static final By AVIS_HOME_ICON = By.xpath("//a[@title='AVIS']");
     public static final By MAKE_A_RESERVATION_TAB_LOCATOR = By.xpath("//a[@id='makeResWidget']");
@@ -19,7 +19,7 @@ public class HomePage extends AbstractPage{
     public static final By SELECT_MY_CAR_BUTTON_LOCATOR = By.xpath("//a[@id='selectMyCarId']");
 
 
-    public HomePage clickOnAvisHome(){
+    public AvisHomePage clickOnAvisHome(){
 
         log.info("Clicking on Home button");
         driver.findElement(AVIS_HOME_ICON).click();
@@ -28,7 +28,7 @@ public class HomePage extends AbstractPage{
     }
 
 
-    public HomePage makeAReservationTabOpen(){
+    public AvisHomePage makeAReservationTabOpen(){
 
         log.info("Make a reservation tab opening");
         driver.findElement(MAKE_A_RESERVATION_TAB_LOCATOR).click();
@@ -41,7 +41,7 @@ public class HomePage extends AbstractPage{
      * @return
      * @param date date Format = '31.12.2015'
      */
-    public HomePage selectPickUpDate(String date){
+    public AvisHomePage selectPickUpDate(String date){
 
         driver.findElement(DATE_FROM_INPUT_LOCATOR).click();
         selectDate(date);
@@ -54,7 +54,7 @@ public class HomePage extends AbstractPage{
      * @return
      * @param date date Format = '31.12.2015'
      */
-    public HomePage selectDropLocation(String date){
+    public AvisHomePage selectReturnDate(String date){
 
         driver.findElement(DATE_TO_INPUT_LOCATOR).click();
         selectDate(date);
@@ -67,21 +67,21 @@ public class HomePage extends AbstractPage{
      * @param pickUpLocation
      * full name of the location(for now)
      */
-    public HomePage selectPickUpLocation(String pickUpLocation){
+    public AvisHomePage selectPickUpLocation(String pickUpLocation){
 
         driver.findElement(PICK_A_LOCATION_INPUT_LOCATOR).sendKeys(pickUpLocation);
 
         return this;
     }
 
-    public HomePage selectAge(String age){
+    public AvisHomePage selectAge(String age){
 
         selectByVisibleText(AGE_SELECT_LOCATOR, age);
 
         return this;
     }
 
-    public HomePage selectResidenceOfCountry(String country){
+    public AvisHomePage selectResidenceOfCountry(String country){
 
         selectByVisibleText(RESIDENT_OF_COUNTRY_SELECT_LOCATOR, country);
 
@@ -89,7 +89,7 @@ public class HomePage extends AbstractPage{
 
     }
 
-    public HomePage clickOnSelectMyCarButton(){
+    public AvisHomePage clickOnSelectMyCarButton(){
 
         driver.findElement(SELECT_MY_CAR_BUTTON_LOCATOR).click();
 

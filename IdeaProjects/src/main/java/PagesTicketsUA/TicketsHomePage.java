@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 
-public class HomePage extends AbstractPage {
+public class TicketsHomePage extends TicketsAbstractPage {
 
     //header Panel
     private By TICKETS_UA_HOME_LINK_LOCATOR = By.xpath("//a[contains(.,'Tickets')]");
@@ -34,12 +34,12 @@ public class HomePage extends AbstractPage {
     private By SEARCH_BUTON_LOCATOR = By.xpath("//a[@class='search_button']");
 
 
-    public HomePage() {
+    public TicketsHomePage() {
 
     }
 
 
-    public HomePage clickOnTickets() throws InterruptedException {
+    public TicketsHomePage clickOnTickets() throws InterruptedException {
 
         log.info("Clicking on Tickets");
         driver.findElement(TICKETS_UA_HOME_LINK_LOCATOR).click();
@@ -47,7 +47,7 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickOnAviaTickets() throws Exception {
+    public TicketsHomePage clickOnAviaTickets() throws Exception {
 
         log.info("Clicking on AVIATICKETS");
         driver.findElement(AVIA_TICKETS_LINK_LOCATOR).click();
@@ -55,7 +55,7 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage selectFromLocation(String travelingFrom) throws InterruptedException {
+    public TicketsHomePage selectFromLocation(String travelingFrom) throws InterruptedException {
 
         log.info("Selecting location \"FROM\"");
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
@@ -66,7 +66,7 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage selectToLocation(String travelingTo) throws InterruptedException {
+    public TicketsHomePage selectToLocation(String travelingTo) throws InterruptedException {
 
         driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
 
@@ -89,7 +89,7 @@ public class HomePage extends AbstractPage {
     /**
      * @param dateOfDeparture = format "30.12.2015"
      */
-    public HomePage selectDateOfDeparture(String dateOfDeparture) throws InterruptedException {
+    public TicketsHomePage selectDateOfDeparture(String dateOfDeparture) throws InterruptedException {
 
         log.info("Selecting date of depatrute with date: " + dateOfDeparture);
         driver.findElement(DEPARTURE_FROM_DATE_SELECT_LOCATOR).click();
@@ -103,7 +103,7 @@ public class HomePage extends AbstractPage {
     /**
      * @param dateOfArrival = format "30.12.2015"
      */
-    public HomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
+    public TicketsHomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
 
         log.info("Selecting date of Arrival with date: " + dateOfArrival);
         selectDate(dateOfArrival);
@@ -111,7 +111,7 @@ public class HomePage extends AbstractPage {
         return this;
     }
 
-    public HomePage clickSearchButton() {
+    public TicketsHomePage clickSearchButton() {
 
         log.info("Clicking on \"Search\" button");
         driver.findElement(SEARCH_BUTON_LOCATOR).click();

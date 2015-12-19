@@ -2,7 +2,7 @@ package Driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import PagesTicketsUA.AbstractPage;
+import PagesTicketsUA.TicketsAbstractPage;
 
 import java.sql.*;
 
@@ -49,7 +49,7 @@ public class DataBaseConnection {
         log.info("Creating DataSource for INSERT operation");
         connection = getDataSource();
 
-        String sql = "INSERT INTO `TICKETS`(`LOCATION_FROM`, `LOCATION_TO`, `DATE_FROM`, `DATE_TO`, `PRICE`, `EXECUTION_DATE`) VALUES (\"" + locationFrom + "\", \"" + locationTo + "\",\"" + dateFrom + "\",\"" + dateTo + "\",\"" + price + "\",\"" + AbstractPage.currentDate() + "\")";
+        String sql = "INSERT INTO `TICKETS`(`LOCATION_FROM`, `LOCATION_TO`, `DATE_FROM`, `DATE_TO`, `PRICE`, `EXECUTION_DATE`) VALUES (\"" + locationFrom + "\", \"" + locationTo + "\",\"" + dateFrom + "\",\"" + dateTo + "\",\"" + price + "\",\"" + TicketsAbstractPage.currentDate() + "\")";
         try {
             log.info("Creating statement");
             statement = connection.createStatement();
@@ -80,7 +80,7 @@ public class DataBaseConnection {
             String dateOfExecution = resultSet.getString("execution_date");
 
 
-            result += id + " : " + locationFrom + " : " + locationTo + " : " + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
+            result += id + " : " + locationFrom + " : " + locationTo + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
         }
 
         System.out.println(result);

@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AbstractPage {
+public class TicketsAbstractPage {
 
     String currentYear = null;
     String currentMonth = null;
