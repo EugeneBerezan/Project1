@@ -2,19 +2,19 @@ package Driver;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import PagesTicketsUA.TicketsAbstractPage;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 
 public class DataBaseConnection {
 
     Logger log = LogManager.getLogger(getClass());
 
-    final String username = "user01";
-    final String password = "user01";
-    final String url = "jdbc:mysql://db4free.net:3306/myfirstdatabase";
-    static Connection connection = null;
+    private final String username = "user01";
+    private final String password = "user01";
+    private final String url = "jdbc:mysql://db4free.net:3306/myfirstdatabase";
+    private static Connection connection = null;
     private Statement statement = null;
     private PreparedStatement preparedStatemt = null;
 
@@ -35,7 +35,7 @@ public class DataBaseConnection {
         try {
             log.info("Closing connection");
             connection.close();
-//            statement.close();
+            statement.close();
             if (preparedStatemt != null) preparedStatemt.close();
             log.info("Connection closed");
         } catch (SQLException e) {
@@ -44,16 +44,16 @@ public class DataBaseConnection {
         }
     }
 
-    public DataBaseConnection insertInfoIntoTable(String locationFrom, String locationTo, String dateFrom, String dateTo, Integer price) {
+    public DataBaseConnection insertTicketsInfoIntoTable(String dateFrom, String dateTo, String locationFrom, String locationTo, Integer price) {
 
         log.info("Creating DataSource for INSERT operation");
         connection = getDataSource();
 
-        String sql = "INSERT INTO `TICKETS`(`LOCATION_FROM`, `LOCATION_TO`, `DATE_FROM`, `DATE_TO`, `PRICE`, `EXECUTION_DATE`) VALUES (\"" + locationFrom + "\", \"" + locationTo + "\",\"" + dateFrom + "\",\"" + dateTo + "\",\"" + price + "\",\"" + TicketsAbstractPage.currentDate() + "\")";
+        String sql = "INSERT INTO `TICKETS`(`DATE_FROM`, `DATE_TO`, `LOCATION_FROM`, `LOCATION_TO`, `PRICE`, `EXECUTION_DATE`) VALUES (\"" + dateFrom + "\", \"" + dateTo + "\",\"" + locationFrom + "\",\"" + locationTo + "\",\"" + price + "\",\"" + currentDate() + "\")";
         try {
             log.info("Creating statement");
             statement = connection.createStatement();
-            log.info("Executing SQL INSERT with parameters | " + locationFrom + " | " + locationTo + " | ");
+            log.info("Executing SQL INSERT");
             statement.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -62,7 +62,26 @@ public class DataBaseConnection {
 
     }
 
-    public DataBaseConnection getResult() throws SQLException {
+    public DataBaseConnection insesrtAvisRentalsInforIntoTable(String pickUpDate, String returnDate, String pickUpLocation, String returnLocation, String carClass, String totalPrice) {
+
+        log.info("Creating DataSource for INSERT operation");
+        connection = getDataSource();
+
+        String sql = "INSERT INTO `AVIS_RENTALS`(`DATE_FROM`, `DATE_TO`, `PICK_UP_LOCATION`, `RETURN_LOCATION`, `CAR_CLASS`, `TOTAL_PRICE`, `EXECUTION_DATE`) VALUES (\"" + pickUpDate + "\", \"" + returnDate + "\", \"" + pickUpLocation + "\", \"" + returnLocation + "\",\"" + carClass + "\",\"" + totalPrice + "\",\"" + currentDate() + "\")";
+        try {
+            log.info("Creating statement");
+            statement = connection.createStatement();
+            log.info("Executing SQL INSERT");
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return this;
+
+    }
+
+
+    public DataBaseConnection getSelectFromTickets() throws SQLException {
 
         log.info("Retrieving results from table");
         String sql = "SELECT * FROM `TICKETS`";
@@ -79,13 +98,43 @@ public class DataBaseConnection {
             String price = resultSet.getString("price");
             String dateOfExecution = resultSet.getString("execution_date");
 
-
-            result += id + " : " + locationFrom + " : " + locationTo + " : " + dateFrom + " : " + dateTo + " : " + price + " : " + dateOfExecution + "\n";
+            result += id + " : " + dateFrom + " : " + dateTo + " : " + locationFrom + " : " + locationTo + " : " + price + " : " + dateOfExecution + "\n";
         }
 
         System.out.println(result);
         return this;
     }
 
+    public DataBaseConnection getSelectFromAvisRentals() throws SQLException {
+
+        log.info("Retrieving results from table");
+        String sql = "SELECT * FROM `AVIS_RENTALS`";
+
+        ResultSet resultSet = statement.executeQuery(sql);
+        String result = "";
+        while (resultSet.next()) {
+
+            int id = resultSet.getInt("ID");
+            String dateFrom = resultSet.getString("DATE_FROM");
+            String dateTo = resultSet.getString("DATE_TO");
+            String pickUpLocation = resultSet.getString("PICK_UP_LOCATION");
+            String returnLocation = resultSet.getString("RETURN_LOCATION");
+            String totalPrice = resultSet.getString("TOTAL_PRICE");
+            String dateOfExecution = resultSet.getString("EXECUTION_DATE");
+
+            result += id + " : " + dateFrom + " : " + dateTo + " : " + pickUpLocation + " : " + returnLocation + " : " + totalPrice + " : " + dateOfExecution + "\n";
+        }
+
+        System.out.println(result);
+        return this;
+    }
+
+    public static String currentDate() {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd '|' HH:mm:ss");
+
+        return dateFormat.format(new java.util.Date());
+
+    }
 
 }

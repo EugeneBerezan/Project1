@@ -24,7 +24,7 @@ public class AvisProtectionAndCoveragePage extends AvisAbstractPage {
 
     public String getTotalPrice(){
 
-        return driver.findElement(ESTIMATED_TOTAL_TEXT_LOCATOR).getText();
+        return driver.findElement(ESTIMATED_TOTAL_TEXT_LOCATOR).getText() + "$";
 
     }
 

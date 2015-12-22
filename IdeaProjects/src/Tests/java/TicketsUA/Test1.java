@@ -25,8 +25,8 @@ public class Test1 extends BaseTest {
                 .changeСurrencyToUSD()
                 .getMinPrice();
         dataBase
-                .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
-                .getResult();
+                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
+                .getSelectFromTickets();
 
     }
 }

@@ -39,12 +39,12 @@ public class AvisHomePage extends AvisAbstractPage {
     /**
      *
      * @return
-     * @param date date Format = '31.12.2015'
+     * @param date date Format = '31/12/2015'
      */
     public AvisHomePage selectPickUpDate(String date){
 
-        driver.findElement(DATE_FROM_INPUT_LOCATOR).click();
-        selectDate(date);
+        driver.findElement(DATE_FROM_INPUT_LOCATOR).sendKeys(date);
+//        selectDate(date);
 
         return this;
     }
@@ -52,12 +52,12 @@ public class AvisHomePage extends AvisAbstractPage {
     /**
      *
      * @return
-     * @param date date Format = '31.12.2015'
+     * @param date date Format = '31/12/2015'
      */
     public AvisHomePage selectReturnDate(String date){
 
-        driver.findElement(DATE_TO_INPUT_LOCATOR).click();
-        selectDate(date);
+        driver.findElement(DATE_TO_INPUT_LOCATOR).sendKeys(date);
+//        selectDate(date);
 
         return this;
     }
@@ -69,7 +69,12 @@ public class AvisHomePage extends AvisAbstractPage {
      */
     public AvisHomePage selectPickUpLocation(String pickUpLocation){
 
+        String [] location = pickUpLocation.split("\\,");
+
+        final By DROPDOWN_LOCATION_LOCATOR = By.xpath("//a[contains(text(),'"+ location[1] +"') and contains(text(),'"+ location[2] +"') and contains(text(),'"+ location[0] +"')]");
+
         driver.findElement(PICK_A_LOCATION_INPUT_LOCATOR).sendKeys(pickUpLocation);
+        driver.findElement(DROPDOWN_LOCATION_LOCATOR).click();
 
         return this;
     }
@@ -89,11 +94,11 @@ public class AvisHomePage extends AvisAbstractPage {
 
     }
 
-    public AvisHomePage clickOnSelectMyCarButton(){
+    public AvisSelectACarPage clickOnSelectMyCarButton(){
 
         driver.findElement(SELECT_MY_CAR_BUTTON_LOCATOR).click();
 
-        return this;
+        return new AvisSelectACarPage();
     }
 
 

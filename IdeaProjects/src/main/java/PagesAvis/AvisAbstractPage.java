@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class AvisAbstractPage {
 
@@ -74,5 +75,6 @@ public class AvisAbstractPage {
         new Select(WebDriverManager.getInstance().findElement(locator)).selectByVisibleText(option);
 
     }
+
 
 }

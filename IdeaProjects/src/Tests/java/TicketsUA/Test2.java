@@ -23,8 +23,8 @@ public class Test2 extends BaseTest {
                 .waitUntilRouteIsCalculated()
                 .changeСurrencyToUSD();
         dataBase
-                .insertInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
-                .getResult();
+                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
+                .getSelectFromTickets();
 
 
     }

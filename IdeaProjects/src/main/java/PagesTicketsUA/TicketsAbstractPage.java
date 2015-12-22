@@ -10,8 +10,6 @@ import Driver.WebDriverManager;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -136,14 +134,6 @@ public class TicketsAbstractPage {
 
         WebDriverWait wait = new WebDriverWait(WebDriverManager.getInstance(), seconds);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-
-    }
-
-    public static String currentDate() {
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd '|' HH:mm:ss");
-
-        return dateFormat.format(new Date());
 
     }
 
