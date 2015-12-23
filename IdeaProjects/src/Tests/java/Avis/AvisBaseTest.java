@@ -8,6 +8,8 @@ import PagesAvis.AvisSelectACarPage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 
+import java.sql.SQLException;
+
 
 public class AvisBaseTest extends AvisHomePage {
 
@@ -24,8 +26,9 @@ public class AvisBaseTest extends AvisHomePage {
     }
 
     @AfterTest
-    public static void closeDriver() {
+    public static void closeDriver() throws SQLException {
         WebDriverManager.close();
+        new DataBaseConnection().closeConnection();
     }
 
 }

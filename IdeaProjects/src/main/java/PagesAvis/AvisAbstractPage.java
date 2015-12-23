@@ -9,17 +9,16 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class AvisAbstractPage {
+
+    Logger log = LogManager.getLogger(getClass());
 
     WebDriver driver = WebDriverManager.getInstance();
 
     public static void sleep(int millis) throws InterruptedException {
         Thread.sleep(millis);
     }
-
-    Logger log = LogManager.getLogger(getClass());
 
     public static String getMonth(String monthName) {
 

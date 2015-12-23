@@ -4,7 +4,7 @@
 <suite name="java">
     <test name="java">
         <classes>
-            <class name="TicketsUA.Test1"/>
+            <class name="Avis.Test1"/>
         </classes>
     </test>
 </suite>

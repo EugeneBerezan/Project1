@@ -10,6 +10,8 @@ public class AvisProtectionAndCoveragePage extends AvisAbstractPage {
 
     public AvisProtectionAndCoveragePage selectPersonalAccidentInsuranceCheckbox(){
 
+        log.info("Selecting Personal Accident Insurance checkbox");
+
         driver.findElement(PERSONAL_ACCIDENT_INSURANCE_CHECKBOX).click();
 
         return new AvisProtectionAndCoveragePage();
@@ -17,12 +19,16 @@ public class AvisProtectionAndCoveragePage extends AvisAbstractPage {
 
     public AvisProtectionAndCoveragePage selectPersonalEffectsProtectionCheckbox(){
 
+        log.info("Selecting Personal Effects Protection Checkbox");
+
         driver.findElement(PERSONAL_EFFECTS_PROTECTION_CHECKBOX).click();
 
         return new AvisProtectionAndCoveragePage();
     }
 
     public String getTotalPrice(){
+
+        log.info("Saving total price");
 
         return driver.findElement(ESTIMATED_TOTAL_TEXT_LOCATOR).getText() + "$";
 

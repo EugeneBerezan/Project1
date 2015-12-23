@@ -42,6 +42,7 @@ public class AvisHomePage extends AvisAbstractPage {
      * @param date date Format = '31/12/2015'
      */
     public AvisHomePage selectPickUpDate(String date){
+        log.info("Selecting pick up date with parametr : " + date);
 
         driver.findElement(DATE_FROM_INPUT_LOCATOR).sendKeys(date);
 //        selectDate(date);
@@ -55,6 +56,7 @@ public class AvisHomePage extends AvisAbstractPage {
      * @param date date Format = '31/12/2015'
      */
     public AvisHomePage selectReturnDate(String date){
+        log.info("Selecting return date with parametr : "+ date);
 
         driver.findElement(DATE_TO_INPUT_LOCATOR).sendKeys(date);
 //        selectDate(date);
@@ -69,6 +71,7 @@ public class AvisHomePage extends AvisAbstractPage {
      */
     public AvisHomePage selectPickUpLocation(String pickUpLocation){
 
+        log.info("Selecting pick up location");
         String [] location = pickUpLocation.split("\\,");
 
         final By DROPDOWN_LOCATION_LOCATOR = By.xpath("//a[contains(text(),'"+ location[1] +"') and contains(text(),'"+ location[2] +"') and contains(text(),'"+ location[0] +"')]");
@@ -81,12 +84,15 @@ public class AvisHomePage extends AvisAbstractPage {
 
     public AvisHomePage selectAge(String age){
 
+        log.info("Selecting age of a renter");
+
         selectByVisibleText(AGE_SELECT_LOCATOR, age);
 
         return this;
     }
 
     public AvisHomePage selectResidenceOfCountry(String country){
+        log.info("Selecting Residence of country with parametr : " + country);
 
         selectByVisibleText(RESIDENT_OF_COUNTRY_SELECT_LOCATOR, country);
 
@@ -95,6 +101,8 @@ public class AvisHomePage extends AvisAbstractPage {
     }
 
     public AvisSelectACarPage clickOnSelectMyCarButton(){
+
+        log.info("Clicking on Select My Car");
 
         driver.findElement(SELECT_MY_CAR_BUTTON_LOCATOR).click();
 
