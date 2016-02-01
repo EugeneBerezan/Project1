@@ -46,7 +46,6 @@ public class AvisHomePage extends AvisAbstractPage {
 
         driver.findElement(DATE_FROM_INPUT_LOCATOR).clear();
         driver.findElement(DATE_FROM_INPUT_LOCATOR).sendKeys(date);
-//        selectDate(date);
 
         return this;
     }
