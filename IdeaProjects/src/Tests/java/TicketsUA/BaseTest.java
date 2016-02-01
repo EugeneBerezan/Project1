@@ -6,7 +6,7 @@ import PagesTicketsUA.TicketsHomePage;
 import PagesTicketsUA.TicketsResultPage;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 import java.sql.SQLException;
 
@@ -17,17 +17,12 @@ public class BaseTest {
     TicketsHomePage homePage = new TicketsHomePage();
     DataBaseConnection dataBase = new DataBaseConnection();
 
-    @BeforeClass
+    @BeforeTest
     public static void driver() {
 
         WebDriverManager.getInstance().get("http://tickets.ua");
 
     }
-
-//    @AfterMethod
-//    public static void tearDawn() {
-//        WebDriverManager.close();
-//    }
 
     @AfterTest
     public static void closeDriver() throws SQLException {
