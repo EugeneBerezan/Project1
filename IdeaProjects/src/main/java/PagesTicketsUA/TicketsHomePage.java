@@ -58,6 +58,7 @@ public class TicketsHomePage extends TicketsAbstractPage {
     public TicketsHomePage selectFromLocation(String travelingFrom) throws InterruptedException {
 
         log.info("Selecting location \"FROM\"");
+        driver.findElement(FROM_INPUT_LOCATOR).clear();
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
         sleep(500);
         waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
@@ -68,6 +69,7 @@ public class TicketsHomePage extends TicketsAbstractPage {
 
     public TicketsHomePage selectToLocation(String travelingTo) throws InterruptedException {
 
+        driver.findElement(TO_INPUT_LOCATOR).clear();
         driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
 
         try {

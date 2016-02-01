@@ -39,11 +39,12 @@ public class AvisHomePage extends AvisAbstractPage {
     /**
      *
      * @return
-     * @param date date Format = '31/12/2015'
+     * @param date Format = '31/12/2015'
      */
     public AvisHomePage selectPickUpDate(String date){
         log.info("Selecting pick up date with parametr : " + date);
 
+        driver.findElement(DATE_FROM_INPUT_LOCATOR).clear();
         driver.findElement(DATE_FROM_INPUT_LOCATOR).sendKeys(date);
 //        selectDate(date);
 
@@ -53,11 +54,12 @@ public class AvisHomePage extends AvisAbstractPage {
     /**
      *
      * @return
-     * @param date date Format = '31/12/2015'
+     * @param date Format = '31/12/2015'
      */
     public AvisHomePage selectReturnDate(String date){
         log.info("Selecting return date with parametr : "+ date);
 
+        driver.findElement(DATE_TO_INPUT_LOCATOR).clear();
         driver.findElement(DATE_TO_INPUT_LOCATOR).sendKeys(date);
 //        selectDate(date);
 
@@ -72,10 +74,11 @@ public class AvisHomePage extends AvisAbstractPage {
     public AvisHomePage selectPickUpLocation(String pickUpLocation){
 
         log.info("Selecting pick up location");
-        String [] location = pickUpLocation.split("\\,");
+        String [] location = pickUpLocation.split(",");
 
         final By DROPDOWN_LOCATION_LOCATOR = By.xpath("//a[contains(text(),'"+ location[1] +"') and contains(text(),'"+ location[2] +"') and contains(text(),'"+ location[0] +"')]");
 
+        driver.findElement(PICK_A_LOCATION_INPUT_LOCATOR).clear();
         driver.findElement(PICK_A_LOCATION_INPUT_LOCATOR).sendKeys(pickUpLocation);
         driver.findElement(DROPDOWN_LOCATION_LOCATOR).click();
 

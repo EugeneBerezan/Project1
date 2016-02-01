@@ -69,6 +69,7 @@ public class AvisAbstractPage {
         return this;
     }
 
+
     public static void selectByVisibleText(By locator, String option){
 
         new Select(WebDriverManager.getInstance().findElement(locator)).selectByVisibleText(option);
