@@ -107,8 +107,6 @@ public class TicketsAbstractPage {
                 }
             }
 
-//            sleep(1000);
-
             waitForElementVisible(20, SELECT_DATE_LOCATOR);
 
             try {

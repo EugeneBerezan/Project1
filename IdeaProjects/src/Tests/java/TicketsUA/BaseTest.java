@@ -2,37 +2,36 @@ package TicketsUA;
 
 import Driver.DataBaseConnection;
 import Driver.WebDriverManager;
+import PagesTicketsUA.TicketsAbstractPage;
 import PagesTicketsUA.TicketsHomePage;
 import PagesTicketsUA.TicketsResultPage;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.*;
 
 import java.sql.SQLException;
 
 
-public class BaseTest {
+public class BaseTest extends TicketsAbstractPage {
 
     TicketsResultPage resultPage = new TicketsResultPage();
     TicketsHomePage homePage = new TicketsHomePage();
     DataBaseConnection dataBase = new DataBaseConnection();
 
-    @BeforeTest
-    public static void driver() {
+    @BeforeMethod
+    public static void setUp() {
 
         WebDriverManager.getInstance().get("http://tickets.ua");
 
     }
 
-    @AfterTest
-    public static void closeDriver() throws SQLException {
+    @AfterMethod
+    public static void tearDown() throws SQLException {
 
         WebDriverManager.close();
 
     }
 
-    @AfterSuite
-    public static void close() throws SQLException {
+    @AfterClass
+    public static void closeConnection() throws SQLException {
 
         WebDriverManager.close();
         new DataBaseConnection().closeConnection();

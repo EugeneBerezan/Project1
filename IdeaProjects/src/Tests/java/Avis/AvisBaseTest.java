@@ -7,6 +7,7 @@ import PagesAvis.AvisProtectionAndCoveragePage;
 import PagesAvis.AvisSelectACarPage;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 import java.sql.SQLException;
 
@@ -18,8 +19,9 @@ public class AvisBaseTest extends AvisHomePage {
     AvisProtectionAndCoveragePage protectionAndCoveragePage = new AvisProtectionAndCoveragePage();
     AvisSelectACarPage selectACarPage = new AvisSelectACarPage();
 
-    @BeforeClass
-    public static void driver(){
+
+    @BeforeTest
+    public static void setUp(){
 
         WebDriverManager.getInstance().get("http://avis.com");
 

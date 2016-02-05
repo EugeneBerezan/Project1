@@ -35,7 +35,6 @@ public class DataBaseConnection {
         try {
             log.info("Closing connection");
             connection.close();
-//            statement.close();
             if (preparedStatemt != null) preparedStatemt.close();
             log.info("Connection closed");
         } catch (SQLException e) {

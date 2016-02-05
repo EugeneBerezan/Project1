@@ -16,7 +16,6 @@ public class AvisTests extends AvisBaseTest {
         String returnDate = "02.27.2016";
         String carClass = "Premium";
 
-
         homePage.selectPickUpLocation(pickUpLocation)
                 .selectPickUpDate(pickUpDate)
                 .selectReturnDate(returnDate)
@@ -40,7 +39,6 @@ public class AvisTests extends AvisBaseTest {
         String pickUpDate = "02.15.2016";
         String returnDate = "02.27.2016";
         String carClass = "Full size";
-
 
         homePage.selectPickUpLocation(pickUpLocation)
                 .selectPickUpDate(pickUpDate)
@@ -67,7 +65,6 @@ public class AvisTests extends AvisBaseTest {
         String returnDate = "02.27.2016";
         String carClass = "Premium";
 
-
         homePage.selectPickUpLocation(pickUpLocation)
                 .selectPickUpDate(pickUpDate)
                 .selectReturnDate(returnDate)
@@ -91,7 +88,6 @@ public class AvisTests extends AvisBaseTest {
         String pickUpDate = "02.15.2016";
         String returnDate = "02.27.2016";
         String carClass = "Full size";
-
 
         homePage.selectPickUpLocation(pickUpLocation)
                 .selectPickUpDate(pickUpDate)
