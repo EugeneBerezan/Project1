@@ -2,37 +2,42 @@ package TicketsUA;
 
 import Driver.DataBaseConnection;
 import Driver.WebDriverManager;
-import PagesTicketsUA.TicketsAbstractPage;
 import PagesTicketsUA.TicketsHomePage;
 import PagesTicketsUA.TicketsResultPage;
+import org.apache.logging.log4j.LogManager;
 import org.testng.annotations.*;
 
 import java.sql.SQLException;
 
 
-public class BaseTest extends TicketsAbstractPage {
+public class BaseTest {
+
+     org.apache.logging.log4j.Logger log = LogManager.getLogger(getClass());
 
     TicketsResultPage resultPage = new TicketsResultPage();
     TicketsHomePage homePage = new TicketsHomePage();
     DataBaseConnection dataBase = new DataBaseConnection();
 
     @BeforeMethod
-    public static void setUp() {
+    public void setUp() {
 
+    log.info("BEFORE METHOD WAS CALLED");
         WebDriverManager.getInstance().get("http://tickets.ua");
 
     }
 
     @AfterMethod
-    public static void tearDown() throws SQLException {
+    public void tearDown() throws SQLException {
 
+        log.info("AFTER METHOD WAS CALLED");
         WebDriverManager.close();
 
     }
 
     @AfterClass
-    public static void closeConnection() throws SQLException {
+    public void closeConnection() throws SQLException {
 
+        log.info("AFTER CLASS WAS CALLED");
         WebDriverManager.close();
         new DataBaseConnection().closeConnection();
 

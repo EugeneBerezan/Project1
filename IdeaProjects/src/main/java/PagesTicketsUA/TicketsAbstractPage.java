@@ -26,7 +26,6 @@ public class TicketsAbstractPage {
 
     Logger log = LogManager.getLogger(getClass());
 
-
     public static String getMonthNumber(String monthName) {
 
         Map<String, String> month = new HashMap<String, String>();

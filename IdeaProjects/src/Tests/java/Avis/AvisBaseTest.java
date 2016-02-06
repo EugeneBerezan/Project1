@@ -20,14 +20,14 @@ public class AvisBaseTest extends AvisHomePage {
     AvisSelectACarPage selectACarPage = new AvisSelectACarPage();
 
 
-    @BeforeTest
+    //@BeforeTest
     public static void setUp(){
 
         WebDriverManager.getInstance().get("http://avis.com");
 
     }
 
-    @AfterTest
+    //@AfterTest
     public static void closeDriver() throws SQLException {
         WebDriverManager.close();
         new DataBaseConnection().closeConnection();

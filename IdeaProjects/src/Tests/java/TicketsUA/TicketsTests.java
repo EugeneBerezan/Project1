@@ -7,8 +7,6 @@ public class TicketsTests extends BaseTest {
     @Test
     public void kievNewYorkFebruary() throws Exception {
 
-//        BaseTest.setUp();
-
         String locationFrom = "Kiev";
         String locationTo = "New York";
         String dateFrom = "12.02.2016";

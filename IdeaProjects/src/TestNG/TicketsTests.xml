@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="java">
+<suite name="Test">
     <test name="java">
         <classes>
-            <class name="TicketsUA.TicketsTests"/>
+            <class name="TicketsUA.TicketsTests">
+                <methods>
+                    <include name="kievNewYorkFebruary"/>
+                    <include name="kievLosAngelesFebruary"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
