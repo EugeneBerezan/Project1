@@ -18,7 +18,7 @@ public class TicketsAbstractPage {
     String currentYear = null;
     String currentMonth = null;
 
-    WebDriver driver = WebDriverManager.getInstance();
+    public WebDriver driver = WebDriverManager.getInstance();
 
     public static void sleep(int millis) throws InterruptedException {
         Thread.sleep(millis);

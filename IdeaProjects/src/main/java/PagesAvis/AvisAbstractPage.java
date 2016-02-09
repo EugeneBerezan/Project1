@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AvisAbstractPage {
+public class AvisAbstractPage{
 
     Logger log = LogManager.getLogger(getClass());
 

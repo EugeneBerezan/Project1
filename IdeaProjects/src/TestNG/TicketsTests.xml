@@ -4,11 +4,9 @@
 <suite name="Test">
     <test name="java">
         <classes>
-            <class name="TicketsUA.TicketsTests">
-                <methods>
-                    <include name="kievNewYorkFebruary"/>
-                    <include name="kievLosAngelesFebruary"/>
-                </methods>
+            <class name="TicketsUA.Test1">
+            </class>
+            <class name="TicketsUA.Test2">
             </class>
         </classes>
     </test>

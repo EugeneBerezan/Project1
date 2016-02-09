@@ -2,6 +2,7 @@ package TicketsUA;
 
 import Driver.DataBaseConnection;
 import Driver.WebDriverManager;
+import PagesTicketsUA.TicketsAbstractPage;
 import PagesTicketsUA.TicketsHomePage;
 import PagesTicketsUA.TicketsResultPage;
 import org.apache.logging.log4j.LogManager;
@@ -9,38 +10,30 @@ import org.testng.annotations.*;
 
 import java.sql.SQLException;
 
+public class BaseTest extends TicketsAbstractPage{
 
-public class BaseTest {
+    org.apache.logging.log4j.Logger log = LogManager.getLogger(getClass());
 
-     org.apache.logging.log4j.Logger log = LogManager.getLogger(getClass());
+    @BeforeClass
+    public void setMethod() throws InterruptedException {
 
-    TicketsResultPage resultPage = new TicketsResultPage();
-    TicketsHomePage homePage = new TicketsHomePage();
-    DataBaseConnection dataBase = new DataBaseConnection();
-
-    @BeforeMethod
-    public void setUp() {
-
-    log.info("BEFORE METHOD WAS CALLED");
-        WebDriverManager.getInstance().get("http://tickets.ua");
-
-    }
-
-    @AfterMethod
-    public void tearDown() throws SQLException {
-
-        log.info("AFTER METHOD WAS CALLED");
-        WebDriverManager.close();
+        log.info("BEFORE CLASS WAS CALLED");
+        driver.get("http://tickets.ua");
 
     }
 
     @AfterClass
-    public void closeConnection() throws SQLException {
+    public void tearDownMethod() throws SQLException, InterruptedException {
 
         log.info("AFTER CLASS WAS CALLED");
-        WebDriverManager.close();
+        driver.close();
         new DataBaseConnection().closeConnection();
-
     }
 
+//    @AfterClass
+//    public void closeConnection() throws SQLException {
+//
+//        new DataBaseConnection().closeConnection();
+//
+//    }
 }

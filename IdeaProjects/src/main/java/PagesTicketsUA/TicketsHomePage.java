@@ -38,7 +38,6 @@ public class TicketsHomePage extends TicketsAbstractPage {
 
     }
 
-
     public TicketsHomePage clickOnTickets() throws InterruptedException {
 
         log.info("Clicking on Tickets");

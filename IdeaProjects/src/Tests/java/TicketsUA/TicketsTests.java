@@ -1,5 +1,8 @@
 package TicketsUA;
 
+import Driver.DataBaseConnection;
+import PagesTicketsUA.TicketsHomePage;
+import PagesTicketsUA.TicketsResultPage;
 import org.testng.annotations.Test;
 
 public class TicketsTests extends BaseTest {
@@ -12,19 +15,22 @@ public class TicketsTests extends BaseTest {
         String dateFrom = "12.02.2016";
         String dateTo = "27.02.2016";
 
-        homePage
+        new TicketsHomePage()
                 .clickOnAviaTickets()
                 .selectFromLocation(locationFrom)
                 .selectToLocation(locationTo)
                 .selectDateOfDeparture(dateFrom)
                 .selectDateOfArrival(dateTo)
                 .clickSearchButton();
-        resultPage
+
+        TicketsResultPage ticketsResultPage = new TicketsResultPage();
+        ticketsResultPage
                 .waitUntilRouteIsCalculated()
                 .changeСurrencyToUSD()
                 .getMinPrice();
-        dataBase
-                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
+
+        new DataBaseConnection()
+                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, ticketsResultPage.getMinPrice())
                 .getSelectFromTickets();
 
     }
@@ -37,19 +43,22 @@ public class TicketsTests extends BaseTest {
         String dateFrom = "12.02.2016";
         String dateTo = "27.02.2016";
 
-        homePage
+        new TicketsHomePage()
                 .clickOnAviaTickets()
                 .selectFromLocation(locationFrom)
                 .selectToLocation(locationTo)
                 .selectDateOfDeparture(dateFrom)
                 .selectDateOfArrival(dateTo)
                 .clickSearchButton();
-        resultPage
+
+        TicketsResultPage ticketsResultPage = new TicketsResultPage();
+        ticketsResultPage
                 .waitUntilRouteIsCalculated()
                 .changeСurrencyToUSD()
                 .getMinPrice();
-        dataBase
-                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, resultPage.getMinPrice())
+
+        new DataBaseConnection()
+                .insertTicketsInfoIntoTable(locationFrom, locationTo, dateFrom, dateTo, ticketsResultPage.getMinPrice())
                 .getSelectFromTickets();
 
     }
