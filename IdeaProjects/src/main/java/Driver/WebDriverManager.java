@@ -9,9 +9,7 @@ public class WebDriverManager {
 
     private static WebDriver driver;
 
-    public WebDriverManager(WebDriver driver) {
-        this.driver = driver;
-    }
+    private WebDriverManager(){}
 
     public static WebDriver getInstance() {
         if (driver == null) {
@@ -39,6 +37,10 @@ public class WebDriverManager {
 
         }
 
+    }
+
+    public static String getCurrentURL(){
+        return driver.getCurrentUrl();
     }
 
 }

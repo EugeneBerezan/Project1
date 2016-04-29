@@ -39,27 +39,26 @@ public class TicketsHomePage extends TicketsAbstractPage {
     }
 
     public TicketsHomePage clickOnTickets() throws InterruptedException {
-
         log.info("Clicking on Tickets");
+
         driver.findElement(TICKETS_UA_HOME_LINK_LOCATOR).click();
 
         return this;
     }
 
     public TicketsHomePage clickOnAviaTickets() throws Exception {
-
         log.info("Clicking on AVIATICKETS");
+
         driver.findElement(AVIA_TICKETS_LINK_LOCATOR).click();
 
         return this;
     }
 
     public TicketsHomePage selectFromLocation(String travelingFrom) throws InterruptedException {
-
         log.info("Selecting location \"FROM\"");
+
         driver.findElement(FROM_INPUT_LOCATOR).clear();
         driver.findElement(FROM_INPUT_LOCATOR).sendKeys(travelingFrom);
-        sleep(500);
         waitForElementVisible(10, FROM_INPUT_FIRST_RESULT_LOCATOR);
         driver.findElement(FROM_INPUT_FIRST_RESULT_LOCATOR).click();
 
@@ -72,15 +71,13 @@ public class TicketsHomePage extends TicketsAbstractPage {
         driver.findElement(TO_INPUT_LOCATOR).sendKeys(travelingTo);
 
         try {
-
             log.info("Selecting location \"TO\"");
+
             waitForElementVisible(20, TO_INPUT_FIRST_RESULT_LOCATOR);
             driver.findElement(TO_INPUT_FIRST_RESULT_LOCATOR).click();
 
         } catch (TimeoutException e) {
-
             log.error("\"To\" location was selected after Timeout...: " + e.getMessage());
-
         }
 
         return this;
@@ -91,8 +88,8 @@ public class TicketsHomePage extends TicketsAbstractPage {
      * @param dateOfDeparture = format "30.12.2015"
      */
     public TicketsHomePage selectDateOfDeparture(String dateOfDeparture) throws InterruptedException {
-
         log.info("Selecting date of depatrute with date: " + dateOfDeparture);
+
         driver.findElement(DEPARTURE_FROM_DATE_SELECT_LOCATOR).click();
 
         selectDate(dateOfDeparture);
@@ -105,16 +102,16 @@ public class TicketsHomePage extends TicketsAbstractPage {
      * @param dateOfArrival = format "30.12.2015"
      */
     public TicketsHomePage selectDateOfArrival(String dateOfArrival) throws InterruptedException {
-
         log.info("Selecting date of Arrival with date: " + dateOfArrival);
+
         selectDate(dateOfArrival);
 
         return this;
     }
 
     public TicketsHomePage clickSearchButton() {
-
         log.info("Clicking on \"Search\" button");
+
         driver.findElement(SEARCH_BUTON_LOCATOR).click();
 
         return this;

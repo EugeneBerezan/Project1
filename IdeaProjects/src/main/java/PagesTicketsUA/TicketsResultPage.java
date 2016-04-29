@@ -40,19 +40,19 @@ public class TicketsResultPage extends TicketsAbstractPage {
     public Integer getMinPrice() {
 
         List<WebElement> elements = driver.findElements(PRICE_IN_USD);
-        List<String> banans = new ArrayList<String>();
+        List<String> elements2 = new ArrayList<String>();
 
         for (WebElement element : elements) {
             String text = element.getText();
             String[] dollar = text.trim().split(" ");
             if (!"".equals(dollar[0])) {
-                banans.add(dollar[0]);
+                elements2.add(dollar[0]);
             }
         }
 
-        Integer min = Integer.parseInt(banans.get(1));
+        Integer min = Integer.parseInt(elements2.get(1));
 
-        for (String aBanan : banans) {
+        for (String aBanan : elements2) {
             if (Integer.parseInt(aBanan) < min) {
                 min = Integer.parseInt(aBanan);
             }

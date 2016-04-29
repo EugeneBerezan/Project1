@@ -16,16 +16,16 @@ public class BaseTest extends TicketsAbstractPage{
 
     @BeforeClass
     public void setMethod() throws InterruptedException {
-
         log.info("BEFORE CLASS WAS CALLED");
+
         driver.get("http://tickets.ua");
 
     }
 
     @AfterClass
     public void tearDownMethod() throws SQLException, InterruptedException {
-
         log.info("AFTER CLASS WAS CALLED");
+
         driver.close();
         new DataBaseConnection().closeConnection();
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="java">
+    <test name="java">
+        <classes>
+            <!--<class name="Internet.ABTestTests"/>-->
+            <!--<class name="Internet.CheckboxesTests"/>-->
+            <!--<class name="Internet.ContexMenuTests"/>-->
+            <!--<class name="Internet.DissapearingElementsTests"/>-->
+            <!--<class name="Internet.DragAndDropTests"/>-->
+            <!--<class name="Internet.DropDownTests"/>-->
+            <!--<class name="Internet.DynamicControlsTests"/>-->
+            <!--<class name="Internet.DynamicLoadingTests"/>-->
+            <!--<class name="Internet.ExitIntentTests"/>-->
+            <!--<class name="Internet.ExitIntentTests"/>-->
+            <!--<class name="Internet.FileDownloadTests"/>-->
+            <!--<class name="Internet.FileDownloadTests"/>-->
+            <!--<class name="Internet.ForgotPasswordTests"/>-->
+            <!--<class name="Internet.FormAuthenticationTest"/>-->
+            <!--<class name="Internet.HoverTests"/>-->
+            <class name="Internet.JavaScriptAlertsTests"/>
+        </classes>
+    </test>
+</suite>
