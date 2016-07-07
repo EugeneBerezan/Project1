@@ -1,0 +1,49 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://service.ws.crds.db.com/" xmlns:cre="http://createupdateparty.vo.ws.crds.db.com" xmlns:com="http://commonpartytypes.vo.ws.crds.db.com" xmlns:com1="http://commonpartyentities.vo.ws.crds.db.com" xmlns:com2="http://commonclientbrtypes.vo.ws.crds.db.com" xmlns:com3="http://commonsystemaccounttypes.vo.ws.crds.db.com">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ser:createUpdateParty_v1>
+         <arg0>
+            <cre:requestHeader>
+               <com:requestID>alex777</com:requestID>
+               <com:userEmail>Ovadyuk@luxoft.com</com:userEmail>
+            </cre:requestHeader>
+            <cre:party>
+               <com:status>A</com:status>
+               <com1:partyID>100386</com1:partyID>
+               <com1:legalName>Testsdfswfddssdcddsdsdsdssfdfd23dsdwweds</com1:legalName>
+               <com1:shortName>TestSabAccount</com1:shortName>    
+               <com1:entityIndustryStatus>42</com1:entityIndustryStatus>                                         
+          
+               <com1:addresses>
+                  <com:status>A</com:status>
+                  <com1:addressType>6164</com1:addressType>  
+                  <com1:addressLine1>dom1_update6_faf33333</com1:addressLine1>                  
+                  <com1:city>Dom_update6_fa11dsfdresdefdsds3</com1:city>                  
+                  <com1:country>GB</com1:country>              
+               </com1:addresses>
+
+               <com1:addresses> 
+                  <com:status>A</com:status>
+                  <com1:addressType>3556</com1:addressType>
+                                        <com1:addressLine1>reg1_update5_fadddd</com1:addressLine1>                  
+                  <com1:city>Reg_update5_fa</com1:city>                  
+                  <com1:country>GB</com1:country>              
+              </com1:addresses>                              
+
+                                                <com1:industryClassifications>
+                  <com:status>A</com:status>
+                   <com:industryClassificationName>Industry classifications Data Source</com:industryClassificationName>
+                   <com:industryClassificationTypeID>18796</com:industryClassificationTypeID>
+               </com1:industryClassifications>
+
+              <com1:industryClassifications>
+                  <com:status>A</com:status>                   
+                   <com:industryClassificationName>Industry classifications Methodology</com:industryClassificationName>
+                 <com:industryClassificationTypeID>18807</com:industryClassificationTypeID>
+             </com1:industryClassifications>
+             
+              </cre:party>
+         </arg0>
+      </ser:createUpdateParty_v1>
+   </soapenv:Body>
+</soapenv:Envelope>
