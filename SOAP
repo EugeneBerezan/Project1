@@ -1,0 +1,257 @@
+package NewFrameWork.pom.Artifacts;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.soap.*;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class SoapTest {
+
+    static String hostName = "lonindapnp418.uk.db.com";
+    static int port = 20201;
+
+    public void createLE(String user, Entity entity) throws SOAPException, XPathExpressionException {
+
+        try{
+
+            String xmlData = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"" +
+                    " xmlns:ser=\"http://service.ws.crds.db.com/\"" +
+                    " xmlns:cre=\"http://createupdateparty.vo.ws.crds.db.com\"" +
+                    " xmlns:com=\"http://commonpartytypes.vo.ws.crds.db.com\"" +
+                    " xmlns:com1=\"http://commonpartyentities.vo.ws.crds.db.com\"" +
+                    " xmlns:com2=\"http://commonclientbrtypes.vo.ws.crds.db.com\"" +
+                    " xmlns:com3=\"http://commonsystemaccounttypes.vo.ws.crds.db.com\">\n" +
+                    "\n" +
+                    "   <soapenv:Header/>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <ser:createUpdateParty_v1>\n" +
+                    "         <arg0>\n" +
+                    "            <cre:requestHeader>\n" +
+                    "               <com:correlationID>10000000</com:correlationID>\n" +
+                    "               <com:requestID>IT Automation</com:requestID>\n" +
+                    "            \n" +
+                    "               <com:user>"+ getCredentialsUserEmail(user) + "</com:user>\n" +
+                    "               <com:userEmail>"+ getCredentialsUserShortName(user) +"</com:userEmail>\n" +
+                    "               <com:requestType>Create</com:requestType>\n" +
+                    "               <com:version>1</com:version>\n" +
+                    "               <com:systemUser>dbCar</com:systemUser>\n" +
+                    "               <com:requestComments>Create LE</com:requestComments>\n" +
+                    "            </cre:requestHeader>\n" +
+                    "            <cre:party>\n" +
+                    "               <com:status>A</com:status>\n" +
+                    "               <com1:partyID>"+"</com1:partyID>\n" +
+                    "               <com1:legalName>"+ entity.legalName +"</com1:legalName>\n" +
+                    "               <com1:shortName>"+ entity.shortName +"</com1:shortName>\n" +
+                    "               <com1:internalLegalName>"+ entity.internalLegalName +"</com1:internalLegalName>\n" +
+                    "               <com1:entityIndustryStatus>42</com1:entityIndustryStatus>             \n" +
+                    "               <com1:partyLevel></com1:partyLevel>\n" +
+                    "           \n" +
+                    //todo : review next block
+                    "                          \n" +
+                    "               <com1:comments>LE creation</com1:comments>\n" +
+                    "               <com1:survivingEntityId></com1:survivingEntityId>\n" +
+                    "               <com1:occupation>AL</com1:occupation>\n" +
+                    "               <com1:placeOfBirth>CO</com1:placeOfBirth>\n" +
+                    "               <com1:title>13788</com1:title>\n" +
+                    "               <com1:abbreviation>2342</com1:abbreviation>\n" +
+                    "               <com1:entityURL>url</com1:entityURL>\n" +
+                    " \t           <com1:LEType>18100</com1:LEType>\n" +
+                    "               <com1:localName>local name</com1:localName>\n" +
+                    "\t          <com1:countryOfEconomicArea></com1:countryOfEconomicArea>\n" +
+                    "\t          <com1:partySubType>17002</com1:partySubType>                     \n" +
+                    "               <com1:legalForm>Test</com1:legalForm> \n" +
+                    "         \n" +
+                    //domicile address
+                    "               <com1:addresses>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                  <com1:addressType>6164</com1:addressType>\n" +
+                    "                  <com1:addressLine1>"+ entity.streetAddressLine1 +"</com1:addressLine1>\n" +
+                    "                  <com1:addressLine2>"+ entity.streetAddressLine2 +"</com1:addressLine2>\n" +
+                    "                  <com1:addressLine3>"+ entity.streetAddressLine3 +"</com1:addressLine3>\n" +
+                    "                  <com1:addressLine4>"+ entity.streetAddressLine4 +"</com1:addressLine4>\n" +
+                    "                  <com1:city>"+ entity.city +"</com1:city>\n" +
+//                    "                  <com1:stateProvince>Alaska</com1:stateProvince>\n"
+                    "                  <com1:postalCode>01001</com1:postalCode>\n" +
+                    "                  <com1:country>GB</com1:country>              \n" +
+                    "               </com1:addresses>\n" +
+                    "\n" +
+                    //registered address
+                    "               <com1:addresses>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                  <com1:addressType>3556</com1:addressType>\n" +
+                    "\t\t        <com1:addressLine1>"+ entity.streetAddressLine1 +"</com1:addressLine1>\n" +
+                    "                  <com1:addressLine2>"+ entity.streetAddressLine2 +"</com1:addressLine2>\n" +
+                    "                  <com1:addressLine3>"+ entity.streetAddressLine3 +"</com1:addressLine3>\n" +
+                    "                  <com1:addressLine4>"+ entity.streetAddressLine4 +"</com1:addressLine4>\n" +
+                    "                  <com1:city>"+ entity.city +"</com1:city>\n" +
+//                    "                  <com1:stateProvince>Alaska</com1:stateProvince>\n" +
+                    "                  <com1:postalCode>03142</com1:postalCode>\n" +
+                    "                  <com1:country>GB</com1:country>              \n" +
+                    "              </com1:addresses>\t\t    \n" +
+                    "\n" +
+                    //operational address
+                    "              <com1:addresses>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                  <com1:addressType>18724</com1:addressType>\n" +
+                    "                  <com1:addressLine1>"+ entity.streetAddressLine1 +"</com1:addressLine1>\n" +
+                    "                  <com1:addressLine2>"+ entity.streetAddressLine2 +"</com1:addressLine2>\n" +
+                    "                  <com1:addressLine3>"+ entity.streetAddressLine3 +"</com1:addressLine3>\n" +
+                    "                  <com1:addressLine4>"+ entity.streetAddressLine4 +"</com1:addressLine4>\n" +
+                    "                  <com1:city>"+ entity.city +"</com1:city>\n" +
+//                    "                  <com1:stateProvince>Alaska</com1:stateProvince>\n" +
+                    "                  <com1:postalCode>1234561</com1:postalCode>\n" +
+                    "                  <com1:country>GB</com1:country>\n" +
+                    "              </com1:addresses>\n" +
+                    "\n" +
+                    //trading address
+                    "              <com1:addresses>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                  <com1:addressType>18725</com1:addressType>\n" +
+                    "                  <com1:addressLine1>"+ entity.streetAddressLine1 +"</com1:addressLine1>\n" +
+                    "                  <com1:addressLine2>"+ entity.streetAddressLine2 +"</com1:addressLine2>\n" +
+                    "                  <com1:addressLine3>"+ entity.streetAddressLine3 +"</com1:addressLine3>\n" +
+                    "                  <com1:addressLine4>"+ entity.streetAddressLine4 +"</com1:addressLine4>\n" +
+                    "                  <com1:city>"+ entity.city +"</com1:city>\n" +
+//                    "                  <com1:stateProvince>Alaska</com1:stateProvince>\n" +
+                    "                  <com1:postalCode>1234561</com1:postalCode>\n" +
+                    "                  <com1:country>ID</com1:country>\n" +
+                    "              </com1:addresses>\n" +
+                    "\n" +
+                    "\t \t\n" +
+                    "\n" +
+                    "               <com1:clientIdentifiers>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                  <com:identifierGroupType>internal</com:identifierGroupType>\n" +
+                    "                  <com:identifierUniqueID></com:identifierUniqueID>\n" +
+                    "                  <com:clientID></com:clientID>\n" +
+                    "                  <com:identifierType>6176</com:identifierType>                  \n" +
+                    "                  <com:identifierID>541432454422</com:identifierID>               \n" +
+                    "               </com1:clientIdentifiers>\n" +
+                    "\n" +
+                    "               \n" +
+                    "\n" +
+                    "\n" +
+                    "   \t\t\t<com1:industryClassifications>\n" +
+                    "                  <com:status>A</com:status>\n" +
+                    "                   <com:industryClassificationName>Industry classifications Data Source</com:industryClassificationName>\n" +
+                    "                   <com:industryClassificationTypeID>18796</com:industryClassificationTypeID>\n" +
+                    "               </com1:industryClassifications>\n" +
+                    "\n" +
+                    "              <com1:industryClassifications>\n" +
+                    "                  <com:status>A</com:status>                   \n" +
+                    "                   <com:industryClassificationName>Industry classifications Methodology</com:industryClassificationName>\n" +
+                    "                 <com:industryClassificationTypeID>18807</com:industryClassificationTypeID>\n" +
+                    "             </com1:industryClassifications>\n" +
+                    "\n" +
+                    "\t\n" +
+                    "\n" +
+                    "              </cre:party>\n" +
+                    "         </arg0>\n" +
+                    "      </ser:createUpdateParty_v1>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>\n";
+
+            System.setProperty("http.proxyHost", "intranet-proxy.intranet.db.com");
+            System.setProperty("http.proxyPort", "8080");
+            InetAddress address = InetAddress.getByName(hostName);
+            Socket socket = new Socket(address,port);
+
+            String path = "http://"+ hostName +":"+ port +"/rds-clientmdm-ws2/service/crdsWebService?wsdl";
+            BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"));
+
+            wr.write("POST "+path+" HTTP/1.1\r\n");
+            wr.write("Host: "+ hostName +":"+ hostName +"\r\n");
+            wr.write("Content-Length: "+xmlData.length()+"\r\n");
+            wr.write("Content-Type: text/xml;charset=UTF-8\r\n" );
+            wr.write("\r\n");
+
+            wr.write(xmlData);
+            wr.flush();
+
+            BufferedReader rd = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            String line;
+            String newLine = null;
+            while ((line = rd.readLine())!=null) {
+                newLine += line +"\n";
+            }
+            System.out.println(newLine);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String getCredentialsUserEmail(String id){
+
+        try{
+           DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            String env = System.getProperty("dbcar_env");
+            Document document;
+            if(env != null) {
+                document = builder.parse(new File("src\\NewFrameWork\\pom\\Credentials.xml"));
+            }else{
+                document = builder.parse(new File(".\\src\\NewFrameWork\\pom\\Credentials.xml"));
+            }
+
+            XPathFactory xPathfactory = XPathFactory.newInstance();
+            XPath xpath = xPathfactory.newXPath();
+
+            Node userName = (Node) xpath.compile("//user[@id = '" + id + "']/name").evaluate(document, XPathConstants.NODE);
+
+            return userName.toString();
+
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private static String getCredentialsUserShortName(String id){
+
+        try{
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+
+            String env = System.getProperty("dbcar_env");
+            Document document;
+            if(env != null) {
+                document = builder.parse(new File("src\\NewFrameWork\\pom\\Credentials.xml"));
+            }else{
+                document = builder.parse(new File(".\\src\\NewFrameWork\\pom\\Credentials.xml"));
+            }
+
+            XPathFactory xPathfactory = XPathFactory.newInstance();
+            XPath xpath = xPathfactory.newXPath();
+
+            Node userShortName = (Node) xpath.compile("//user[@id = '" + id + "']/shortName").evaluate(document, XPathConstants.NODE);
+
+            return userShortName.toString();
+
+        } catch (ParserConfigurationException | SAXException | IOException | XPathExpressionException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+}
+ 
+
+
+---
+This e-mail may contain confidential and/or privileged information. If you are not the intended recipient (or have received this e-mail in error) please notify the sender immediately and delete this e-mail. Any unauthorized copying, disclosure or distribution of the material in this e-mail is strictly forbidden.
+
+Please refer to http://www.db.com/en/content/eu_disclosures.htm for additional EU corporate and regulatory disclosures and to http://www.db.com/unitedkingdom/content/privacy.htm for information about privacy.
